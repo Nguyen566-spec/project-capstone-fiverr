@@ -1,7 +1,8 @@
+import { FieldValues } from "react-hook-form";
 import http from "../constant/api";
-import { GetDangKyResponse } from "../react-app-env";
+import { GetAuthResponse, GetHttpResponse } from "../react-app-env";
 
 export const quanLyAuthService = {
-  dangKy: (payload: GetDangKyResponse) => http.post("auth/signup", payload),
-  dangNhap: (payload: GetDangKyResponse) => http.post("auth/signin", payload),
+  dangKy: (payload: FieldValues) => http.post<GetHttpResponse<GetAuthResponse>>("auth/signup", payload),
+  dangNhap: (payload: FieldValues) => http.post<GetHttpResponse<GetAuthResponse>>("auth/signin", payload),
 };

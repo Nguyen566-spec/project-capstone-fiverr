@@ -3,8 +3,8 @@ import { layChiTietCongViec, layDanhSachCongViec } from "./thunkAction";
 import { GetCongViecResponse } from "../../react-app-env";
 
 type InitialState = {
-  danhSachCongViec: GetCongViecResponse[];
-  chiTietCongViec: GetCongViecResponse | null;
+  danhSachCongViec?: GetCongViecResponse[];
+  chiTietCongViec?: GetCongViecResponse | null;
 };
 
 const initialState: InitialState = {

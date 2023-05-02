@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { dangNhap } from "./thunkAction";
-import { GetDangKyResponse } from "../../react-app-env";
+import { GetAuthResponse } from "../../react-app-env";
 
 type InitialState = {
-  auth: GetDangKyResponse | null;
+  auth?: GetAuthResponse | null;
 };
 
 const initialState: InitialState = {
@@ -28,9 +28,9 @@ export const { reducer: quanLyAuthReducer, actions: quanLyAuthActions } =
     },
     extraReducers(builder) {
       builder.addCase(dangNhap.fulfilled, (state, action) => {
-        console.log(action.payload.user);
-        state.auth = action.payload.user;
-        localStorage.setItem("auth", JSON.stringify(action.payload.user));
+        console.log(action.payload);
+        state.auth = action.payload;
+        localStorage.setItem("auth", JSON.stringify(action.payload));
       });
     },
   });
