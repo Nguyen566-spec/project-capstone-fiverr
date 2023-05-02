@@ -28,7 +28,6 @@ export const { reducer: quanLyAuthReducer, actions: quanLyAuthActions } =
     },
     extraReducers(builder) {
       builder.addCase(dangNhap.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.auth = action.payload;
         localStorage.setItem("auth", JSON.stringify(action.payload));
       });
