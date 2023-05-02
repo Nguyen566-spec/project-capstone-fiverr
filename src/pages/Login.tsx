@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../store";
 import { useForm } from "react-hook-form";
-import { GetDangKyResponse } from "../react-app-env";
+import { GetAuthResponse } from "../react-app-env";
 import { dangNhap } from "../store/quanLyAuth/thunkAction";
 import { NavLink, Navigate } from "react-router-dom";
 
@@ -13,7 +13,7 @@ const Login = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<GetDangKyResponse>();
+  } = useForm<GetAuthResponse>();
   if (auth) {
     return <Navigate to="/" />;
   }

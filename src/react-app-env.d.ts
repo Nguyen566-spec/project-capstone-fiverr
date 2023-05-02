@@ -17,7 +17,7 @@ export type GetCongViecResponse = {
   saoCongViec: number;
 };
 
-export type GetDangKyResponse = {
+export type GetAuthResponse = {
   id: number;
   name: string;
   email: string;

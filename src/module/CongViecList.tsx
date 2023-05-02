@@ -15,7 +15,7 @@ const CongViecList = () => {
   }, [dispatch]);
   return (
     <div className="grid grid-cols-4 gap-4">
-      {danhSachCongViec.map((congViec: GetCongViecResponse) => (
+      {danhSachCongViec?.map((congViec: GetCongViecResponse) => (
         <CongViecCard key={congViec.id} congViec={congViec} />
       ))}
     </div>

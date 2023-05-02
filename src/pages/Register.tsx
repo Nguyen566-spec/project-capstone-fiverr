@@ -1,5 +1,5 @@
 import React from "react";
-import { GetDangKyResponse } from "../react-app-env";
+import { GetAuthResponse } from "../react-app-env";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { quanLyAuthService } from "../services/quanLyAuth.service";
@@ -10,7 +10,7 @@ const Register = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<GetDangKyResponse>();
+  } = useForm<GetAuthResponse>();
   return (
     <div className="container mx-auto">
       <h1 className="text-4xl text-center font-bold p-8">Register</h1>
