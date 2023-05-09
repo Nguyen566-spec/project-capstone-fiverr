@@ -1,0 +1,9 @@
+.btn-primary {
+  @apply border-[1px] border-color-white py-[--pd-5] px-[--pd-16] hover:cursor-pointer bg-auto rounded-md text-color-white hover:bg-color-green-light hover:transition	hover:duration-700	
+}
+.btn-search {
+  @apply bg-color-black px-[--pd-12] py-[--pd-10] border-[1px] hover:bg-color-black-light rounded-r-md;
+  svg {
+    fill: #fff;
+  }
+}

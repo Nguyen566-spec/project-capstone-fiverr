@@ -1,0 +1,12 @@
+header {
+  @apply flex justify-between items-center fixed w-[100%] mx-[--mg-20] px-[--pd-32] h-[80px];
+  ul {
+    @apply flex justify-evenly items-center gap-4;
+    li {
+      @apply text-color-white hover:text-color-green-light;
+    }
+    li.dif {
+      @apply text-color-puple hover:text-color-green-light;
+    }
+  }
+} 

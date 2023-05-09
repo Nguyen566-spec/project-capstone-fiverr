@@ -1,0 +1,115 @@
+:root {
+  --color-green-light: #1dbf73;
+  --color-green: #19a463;
+  --color-black: #222325;
+  --color-black-light: #404145;
+  --color-gray: #74767e;
+  --color-gray-light: #62646a;
+  --color-white: #fff;
+  --color-green-dark: #003912;
+  --color-puple-dark: #0d084d;
+  --color-puple: #1e1692;
+  --color-puple-light: #446ee7;
+  --font-main: 1rem;
+  --font-10: 0.625rem;
+  --font-14: 0.875rem;
+  --font-18: 1.125rem;
+  --font-20: 1.25rem;
+  --font-30: 1.875rem;
+  --font-32: 2rem;
+  --pd-1: 1px;
+  --pd-2: 2px;
+  --pd-5: 5px;
+  --pd-10: 0.625rem;
+  --pd-12: 0.75rem;
+  --pd-16: 1rem;
+  --pd-18: 1.125rem;
+  --pd-24: 1.5rem;
+  --pd-32: 2rem;
+  --pd-40: 2.5rem;
+  --pd-48: 3rem;
+  --pd-55: 3.45rem;
+  --pd-64: 4rem;
+  --pd-95: 5.95rem;
+  --pd-120: 7.5rem;
+  --pd-150: 9.35rem;
+  --mg-4: 4px;
+  --mg-8: 0.5rem;
+  --mg-12: 0.75rem;
+  --mg-16: 1rem;
+  --mg-20: 1.25rem;
+  --mg-96: 6rem;
+  --br-4: 4px;
+}
+
+.btn-primary {
+  @apply border-[1px] border-color-white py-[--pd-5] px-[--pd-16] hover:cursor-pointer bg-auto rounded-md text-color-white hover:bg-color-green-light hover:transition	hover:duration-700;
+}
+
+.btn-search {
+  @apply bg-color-black px-[--pd-12] py-[--pd-10] border-[1px] hover:bg-color-black-light rounded-r-md;
+}
+.btn-search svg {
+  fill: #fff;
+}
+
+.search-header {
+  @apply w-[450px] px-[--pd-12] py-[--pd-5] border-[1px] border-color-gray-light-2 rounded-l-md focus:border-color-black-light;
+}
+
+.form-search {
+  @apply flex;
+}
+
+header {
+  @apply flex justify-between items-center fixed w-[100%] mx-[--mg-20] px-[--pd-32] h-[80px];
+}
+header ul {
+  @apply flex justify-evenly items-center gap-4;
+}
+header ul li {
+  @apply text-color-white hover:text-color-green-light;
+}
+header ul li.dif {
+  @apply text-color-puple hover:text-color-green-light;
+}
+
+footer {
+  @apply text-center lg:text-left mx-[--mg-20] px-[--pd-32] pb-[--pd-24] pt-[--pd-64] mb-[--mg-8];
+}
+footer .footer-link {
+  @apply text-center md:text-left container py-[--pd-24];
+}
+footer .footer-link .item-link {
+  @apply grid gap-8 md:grid-cols-2 lg:grid-cols-5;
+}
+footer .footer-link .item-link .item-footer .title-item {
+  @apply mb-[--mg-16] flex justify-center font-semibold md:justify-start text-color-black-light;
+}
+footer .footer-link .item-link .item-footer .text-main {
+  @apply text-color-gray hover:underline underline-offset-2;
+}
+footer .bottom {
+  @apply flex items-center justify-center lg:justify-between py-[--pd-24];
+}
+footer .bottom .logo {
+  @apply flex items-center gap-2;
+}
+footer .bottom .logo .fiverr-logo-footer {
+  @apply h-[23px] w-[72px];
+}
+footer .bottom .logo .copyright {
+  @apply font-thin text-font-14 text-color-gray-light-2;
+}
+footer .bottom .social ul {
+  @apply flex justify-center gap-3 text-color-gray items-center;
+}
+footer .bottom .social ul li svg {
+  @apply fill-color-gray rounded-full hover:bg-color-white-light w-[30px] h-[30px] p-[5px];
+}
+footer .bottom .social ul li button {
+  @apply rounded-md hover:bg-color-white-light py-[--pd-2] px-1;
+}
+footer .line-top {
+  @apply border-t-[1px] border-t-color-white-light;
+}/*# sourceMappingURL=style.css.map */
