@@ -11,7 +11,7 @@ const Header = () => {
     <div className="flex justify-between items-center">
       {auth ? (
         <>
-          <h1>Hello, {auth.name}</h1>
+          <h1>Hello, {auth.user.name}</h1>
           <button
             onClick={() => {
               dispatch(quanLyAuthActions.dangXuat());
