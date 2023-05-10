@@ -4,6 +4,11 @@ export type GetHttpResponse<T> = {
   dateTime: Date;
 };
 
+export type GetTokenResponse<T> = {
+  user: T,
+  token: string,
+}
+
 export type GetCongViecResponse = {
   id: number;
   tenCongViec: string;

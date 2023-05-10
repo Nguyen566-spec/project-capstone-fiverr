@@ -1,13 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { dangNhap } from "./thunkAction";
-import { GetAuthResponse } from "../../react-app-env";
+import { GetAuthResponse, GetTokenResponse } from "../../react-app-env";
 
 type InitialState = {
-  auth?: GetAuthResponse | null;
+  auth?: GetTokenResponse<GetAuthResponse>;
 };
 
 const initialState: InitialState = {
-  auth: null,
+  auth: undefined,
 };
 
 export const { reducer: quanLyAuthReducer, actions: quanLyAuthActions } =
@@ -16,11 +16,11 @@ export const { reducer: quanLyAuthReducer, actions: quanLyAuthActions } =
     initialState,
     reducers: {
       dangXuat: (state) => {
-        localStorage.removeItem("auth");
-        state.auth = null;
+        localStorage.removeItem("user");
+        state.auth = undefined;
       },
       layAuth: (state) => {
-        const data = localStorage.getItem("auth");
+        const data = localStorage.getItem("user");
         if (data) {
           state.auth = JSON.parse(data);
         }
@@ -29,7 +29,7 @@ export const { reducer: quanLyAuthReducer, actions: quanLyAuthActions } =
     extraReducers(builder) {
       builder.addCase(dangNhap.fulfilled, (state, action) => {
         state.auth = action.payload;
-        localStorage.setItem("auth", JSON.stringify(action.payload));
+        localStorage.setItem("user", JSON.stringify(action.payload));
       });
     },
   });
