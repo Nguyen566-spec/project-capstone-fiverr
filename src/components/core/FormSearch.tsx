@@ -1,7 +1,6 @@
 import React from "react";
 
 type Props = {
-  classForm: string;
   classInput :string;
   placeholder: string;
   classBtn: string;
@@ -9,7 +8,7 @@ type Props = {
 
 const FormSearch = (props: Props) => {
   return (
-    <form className={props.classForm}>
+    <form className="flex">
       <input type="search" autoComplete="off" placeholder={props.placeholder}  className={props.classInput}/>
       <button className={props.classBtn} aria-label="search">
         <div>

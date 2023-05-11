@@ -1,0 +1,13 @@
+.trust {
+  @apply bg-color-white-light-2 h-[100px];
+  .trust-content {
+    @apply flex justify-between items-center w-[50%] mx-auto pt-[--pd-12];
+  }
+  img {
+    @apply w-[60px] h-[60px];
+  }
+  p {
+    @apply font-semibold text-color-gray-light-2
+  }
+  
+}
