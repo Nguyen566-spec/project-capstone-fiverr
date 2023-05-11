@@ -36,42 +36,59 @@
   --mg-4: 4px;
   --mg-8: 0.5rem;
   --mg-12: 0.75rem;
+  --mg-14: 0.875rem;
   --mg-16: 1rem;
   --mg-20: 1.25rem;
   --mg-96: 6rem;
   --br-4: 4px;
 }
 
-.btn-primary {
-  @apply border-[1px] border-color-white py-[--pd-5] px-[--pd-16] hover:cursor-pointer bg-auto rounded-md text-color-white hover:bg-color-green-light hover:transition	hover:duration-700;
+body {
+  @apply font-ass text-color-gray-light;
 }
 
-.btn-search {
+.btn-primary, .btn-popular {
+  @apply border-[1px] border-color-white py-[--pd-5] px-[--pd-16] hover:cursor-pointer bg-auto rounded-md text-color-white hover:bg-color-green-light hover:transition	hover:duration-700 cursor-pointer;
+}
+
+.btn-search, .btn-search-carousel {
   @apply bg-color-black px-[--pd-12] py-[--pd-10] border-[1px] hover:bg-color-black-light rounded-r-md;
 }
-.btn-search svg {
+.btn-search svg, .btn-search-carousel svg {
   fill: #fff;
 }
 
-.search-header {
+.btn-search-carousel {
+  @apply bg-color-green-light border-none hover:bg-color-green;
+}
+
+.btn-popular {
+  @apply rounded-lg hover:bg-color-white hover:text-color-gray-light;
+}
+
+.btn-slide {
+  @apply rounded-[50%] bg-color-white cursor-pointer w-[40px] h-[40px] leading-[40px] shadow-color-gray-light-2 shadow-lg;
+}
+
+.search-header, .search-carousel {
   @apply w-[450px] px-[--pd-12] py-[--pd-5] border-[1px] border-color-gray-light-2 rounded-l-md focus:border-color-black-light;
 }
 
-.form-search {
-  @apply flex;
+.search-carousel {
+  @apply border-none hover:border-none;
 }
 
 header {
-  @apply flex justify-between items-center fixed w-[100%] mx-[--mg-20] px-[--pd-32] h-[80px];
+  @apply flex justify-between items-center fixed w-[100%] mx-[--mg-20] px-[--pd-32] h-[80px] z-10;
 }
 header ul {
   @apply flex justify-evenly items-center gap-4;
 }
 header ul li {
-  @apply text-color-white hover:text-color-green-light;
+  @apply text-color-white hover:text-color-green-light cursor-pointer;
 }
 header ul li.dif {
-  @apply text-color-puple hover:text-color-green-light;
+  @apply text-color-puple hover:text-color-green-light cursor-pointer;
 }
 
 footer {
@@ -112,4 +129,217 @@ footer .bottom .social ul li button {
 }
 footer .line-top {
   @apply border-t-[1px] border-t-color-white-light;
+}
+
+.carousel {
+  @apply bg-carousel1 h-[600px] w-[100vw] bg-no-repeat relative z-0;
+}
+.carousel .carousel-content {
+  @apply absolute top-[30%] left-[5%] text-color-white w-[50%];
+}
+.carousel .carousel-content h2 {
+  @apply text-font-48 font-semibold pb-[--pd-24];
+}
+.carousel .carousel-content .popular {
+  @apply pt-[--pd-24];
+}
+.carousel .carousel-content .popular ul {
+  @apply flex justify-start items-center gap-4;
+}
+
+.trust {
+  @apply bg-color-white-light-2 h-[100px];
+}
+.trust .trust-content {
+  @apply flex justify-between items-center w-[50%] mx-auto pt-[--pd-12];
+}
+.trust img {
+  @apply w-[60px] h-[60px];
+}
+.trust p {
+  @apply font-semibold text-color-gray-light-2;
+}
+
+.card .card-img {
+  @apply relative;
+}
+.card .card-img img {
+  @apply w-[240px] h-[345px] rounded-md;
+}
+.card .card-img .card-text {
+  @apply absolute top-5 left-5 text-color-white;
+}
+.card .card-img .card-text p {
+  @apply text-font-14;
+}
+.card .card-img .card-text h3 {
+  @apply text-font-30 font-semibold;
+}
+
+.popular-service {
+  @apply max-w-screen-2xl px-[--pd-32] py-[--pd-40];
+}
+.popular-service .slide-package {
+  @apply relative overflow-x-auto;
+}
+.popular-service .slide-package button {
+  @apply absolute z-[10];
+}
+.popular-service .slide-package button.left {
+  @apply top-[50%] left-0;
+}
+.popular-service .slide-package button.right {
+  @apply top-[50%] right-0;
+}
+.popular-service .slide-package .card-list {
+  @apply grid grid-cols-5 gap-6;
+}
+.popular-service .slide-package .card-list .card-item {
+  @apply cursor-pointer hover:opacity-[0.85] w-[240px] h-[345px];
+}
+.popular-service h2 {
+  @apply pb-[--pd-24] text-font-32 font-bold text-color-black-light;
+}
+
+.introduction {
+  @apply px-[--pd-32] bg-color-green-light-2;
+}
+.introduction .intro-content {
+  @apply py-[--pd-48] flex justify-between items-center;
+}
+.introduction .intro-content .intro-left {
+  @apply w-[50%] pr-[11%] pl-[--pd-16];
+}
+.introduction .intro-content .intro-left h2 {
+  @apply text-font-32 font-bold text-color-black pb-[--pd-12];
+}
+.introduction .intro-content .intro-left h3 {
+  @apply text-font-20 text-color-black font-semibold;
+}
+.introduction .intro-content .intro-left h3 i {
+  @apply text-color-gray;
+}
+.introduction .intro-content .intro-left p {
+  @apply text-font-18 leading-10;
+}
+.introduction .intro-content .intro-right {
+  @apply w-[50%] relative;
+}
+.introduction .intro-content .intro-right:after {
+  @apply bg-btn_play;
+  background-size: 80px;
+  content: "";
+  display: inline-block;
+  height: 80px;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  z-index: 0;
+}
+
+.weGot {
+  @apply px-[--pd-32] py-[--pd-48];
+}
+.weGot .wegot-content h2 {
+  @apply text-font-32 text-color-black font-bold;
+}
+.weGot .wegot-content .list-got {
+  @apply grid grid-cols-5 items-center gap-5 pt-[--pd-24];
+}
+.weGot .wegot-content .list-got .item-got {
+  @apply flex flex-col items-center;
+}
+.weGot .wegot-content .list-got .item-got svg {
+  @apply w-[60px] h-[60px] relative;
+}
+.weGot .wegot-content .list-got .item-got svg:after {
+  border-bottom: 2px solid #c5c6c9;
+  content: "";
+  padding: 0 0 8px;
+  position: absolute;
+  right: 50%;
+  top: 45px;
+  transform: translateX(50%);
+  width: 48px;
+  height: 2px;
+  z-index: 1;
+}
+
+.business {
+  @apply bg-color-puple-dark text-color-white;
+}
+.business .business-content {
+  @apply px-[--pd-32] py-[--pd-48] flex;
+}
+.business .business-content .business-left {
+  @apply pr-[20%];
+  @apply w-[50%];
+}
+.business .business-content .business-left small {
+  @apply flex gap-4;
+}
+.business .business-content .business-left small .new {
+  @apply bg-color-puple-light border-color-puple-light text-color-white;
+}
+.business .business-content .business-left h2 {
+  @apply text-font-30 font-semibold mt-[--mg-16];
+}
+.business .business-content .business-left p {
+  @apply text-font-18 leading-6 my-[--mg-12];
+}
+.business .business-content .business-left p i {
+  @apply text-color-gray-light mr-[--mg-8] text-font-20;
+}
+.business .business-content .business-right {
+  @apply w-[50%];
+}
+
+.member-item {
+  @apply flex items-center;
+}
+.member-item .member-left {
+  @apply w-[50%] relative p-[--pd-48];
+}
+.member-item .member-left img {
+  @apply rounded-lg;
+}
+.member-item .member-left:after {
+  @apply bg-btn_play;
+  background-size: 80px;
+  content: "";
+  display: inline-block;
+  height: 80px;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  z-index: 0;
+}
+.member-item .member-right {
+  @apply w-[50%];
+}
+.member-item .member-right .author {
+  @apply flex items-center justify-start gap-4;
+}
+.member-item .member-right .author h5 {
+  @apply text-font-20;
+}
+.member-item .member-right .author img {
+  @apply w-[11%];
+}
+.member-item .member-right .author span {
+  @apply text-color-gray-light-2;
+}
+.member-item .member-right .qoute {
+  @apply pr-[5%];
+}
+.member-item .member-right .qoute i {
+  @apply text-font-32 text-color-green-dark font-ara;
+}
+
+.slideMember {
+  @apply px-[--pd-32] py-[--pd-48];
 }/*# sourceMappingURL=style.css.map */

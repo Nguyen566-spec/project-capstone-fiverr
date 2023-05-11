@@ -5,11 +5,11 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { RootState, useAppDispatch } from "../store";
 import { quanLyAuthActions } from "../store/quanLyAuth/slice";
 
-
 const Header = () => {
   const { auth } = useSelector((state: RootState) => state.quanLyAuth);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
   return (
     <header>
       <div>
@@ -32,7 +32,6 @@ const Header = () => {
       </div>
       <div>
         <FormSearch
-          classForm="form-search"
           placeholder="What service are you looking for today?"
           classBtn="btn-search"
           classInput="search-header"
@@ -61,12 +60,12 @@ const Header = () => {
               </>
             ) : (
               <>
-                <NavLink to="/login">Sign in</NavLink>
+                <NavLink to="/register">Sign in</NavLink>
               </>
             )}
           </li>
           <li>
-            <button className="btn-primary">Join</button>
+            <NavLink to="/login" className="btn-primary">Join</NavLink>
           </li>
         </ul>
       </div>
