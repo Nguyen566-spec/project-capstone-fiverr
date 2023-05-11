@@ -48,7 +48,7 @@ const Header = () => {
           <li>
             {auth ? (
               <>
-                <h1>Hello, {auth.name}</h1>
+                {/* <h1>Hello, {auth.user}</h1> */}
                 <button
                   onClick={() => {
                     dispatch(quanLyAuthActions.dangXuat());

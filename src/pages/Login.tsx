@@ -4,11 +4,13 @@ import { RootState, useAppDispatch } from "../store";
 import { useForm } from "react-hook-form";
 import { GetAuthResponse } from "../react-app-env";
 import { dangNhap } from "../store/quanLyAuth/thunkAction";
-import { NavLink, Navigate } from "react-router-dom";
+import { NavLink, Navigate, useNavigate } from "react-router-dom";
+import { quanLyAuthService } from "../services/quanLyAuth.service";
 
 const Login = () => {
   const { auth } = useSelector((state: RootState) => state.quanLyAuth);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -21,7 +23,7 @@ const Login = () => {
     <div className="container mx-auto">
       <h1 className="text-center text-4xl font-semibold p-8">Login</h1>
       <form
-        onSubmit={handleSubmit(async (value) => {
+        onSubmit={handleSubmit((value) => {
           dispatch(dangNhap(value));
         })}
       >
@@ -60,7 +62,8 @@ const Login = () => {
           <p className="text-red-500">{errors.password?.message}</p>
         </div>
         <div className="mb-6">
-          <span>Chưa có tài khoản?</span> <NavLink to="/register">Đăng ký</NavLink>
+          <span>Chưa có tài khoản?</span>{" "}
+          <NavLink to="/register">Đăng ký</NavLink>
         </div>
         <button
           type="submit"
