@@ -18,5 +18,16 @@
 }
 
 .btn-slide {
-  @apply rounded-[50%] bg-color-white cursor-pointer w-[40px] h-[40px] leading-[40px] shadow-color-gray-light-2 shadow-lg;
+  @apply absolute top-[50%] z-30 flex items-center justify-center px-4 cursor-pointer rounded-[50%] bg-color-white w-[40px] h-[40px] leading-[40px] shadow-color-gray-light-2 shadow-lg;
+  &.left {
+    @apply left-[2%];
+  }
+  &.right {
+    @apply right-[2%]
+  }
+}
+
+.btn-join {
+  @extend .btn-primary;
+  @apply text-color-green-light border-color-green-light bg-color-white font-semibold hover:text-color-white;
 }
