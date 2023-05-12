@@ -12,9 +12,9 @@ const Footer = () => {
        let  newtitle = title.replace(/_/g," ")
        title = newtitle
       }
-      const newValue = value.map((item: string) => {
+      const newValue = value.map((item:string,index:number) => {
         return (
-          <p className="mb-4" key={item}>
+          <p className="mb-4" key={index}>
             <NavLink to="#!" className="text-main">
               {item}
             </NavLink>

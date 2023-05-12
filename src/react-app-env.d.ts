@@ -5,9 +5,9 @@ export type GetHttpResponse<T> = {
 };
 
 export type GetTokenResponse<T> = {
-  user: T,
-  token: string,
-}
+  user: T;
+  token: string;
+};
 
 export type GetCongViecResponse = {
   id: number;
@@ -39,3 +39,27 @@ export type GetAuthResponse = {
 //   email: string;
 //   password: string;
 // };
+
+export type GetTypeWorkResponse = {
+  id: number;
+  tenLoaiCongViec: string;
+};
+
+export type DetailTypeWork = {
+  id: number;
+  tenChiTiet: string;
+};
+
+export type GroupDetailTypeWork = {
+  id: number;
+  tenNhom: string;
+  hinhAnh: string;
+  maLoaiCongViec: number;
+  dsChiTietLoai?: DetailTypeWork[];
+};
+
+export type MenuTypeWork = {
+  id: number;
+  tenLoaiCongViec: string;
+  dsNhomChiTietLoai?: GroupDetailTypeWork[]; 
+};

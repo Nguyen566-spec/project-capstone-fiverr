@@ -1,15 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { layChiTietCongViec, layDanhSachCongViec } from "./thunkAction";
-import { GetCongViecResponse } from "../../react-app-env";
+import { layChiTietCongViec, layDanhSachCongViec , getTypeWork , getMenuTypeWork, getDetailTypeWork } from "./thunkAction";
+import { GetCongViecResponse,GetTypeWorkResponse , MenuTypeWork , GroupDetailTypeWork} from "../../react-app-env";
 
 type InitialState = {
   danhSachCongViec?: GetCongViecResponse[];
   chiTietCongViec?: GetCongViecResponse | null;
+  chiTietLoaiCongViec?:GroupDetailTypeWork[];
+  menuLoaiCongViec ?: MenuTypeWork[];
+  listTypeWork ?: GetTypeWorkResponse[];
 };
 
 const initialState: InitialState = {
   danhSachCongViec: [],
   chiTietCongViec: null,
+  chiTietLoaiCongViec: [],
+  menuLoaiCongViec : [],
+  listTypeWork : [],
 };
 
 export const {
@@ -26,6 +32,15 @@ export const {
       })
       .addCase(layChiTietCongViec.fulfilled, (state, action) => {
         state.chiTietCongViec = action.payload;
-      });
+      })
+      .addCase(getDetailTypeWork.fulfilled, (state,action)=>{
+        state.chiTietLoaiCongViec = action.payload
+      })
+      .addCase(getMenuTypeWork.fulfilled , (state,action)=>{
+        state.menuLoaiCongViec = action.payload
+      })
+      .addCase(getTypeWork.fulfilled, (state,action)=>{
+        state.listTypeWork = action.payload
+      })
   },
 });

@@ -47,7 +47,7 @@ body {
   @apply font-ass text-color-gray-light;
 }
 
-.btn-primary, .btn-popular {
+.btn-primary, .btn-join, .btn-popular {
   @apply border-[1px] border-color-white py-[--pd-5] px-[--pd-16] hover:cursor-pointer bg-auto rounded-md text-color-white hover:bg-color-green-light hover:transition	hover:duration-700 cursor-pointer;
 }
 
@@ -67,7 +67,17 @@ body {
 }
 
 .btn-slide {
-  @apply rounded-[50%] bg-color-white cursor-pointer w-[40px] h-[40px] leading-[40px] shadow-color-gray-light-2 shadow-lg;
+  @apply absolute top-[50%] z-30 flex items-center justify-center px-4 cursor-pointer rounded-[50%] bg-color-white w-[40px] h-[40px] leading-[40px] shadow-color-gray-light-2 shadow-lg;
+}
+.btn-slide.left {
+  @apply left-[2%];
+}
+.btn-slide.right {
+  @apply right-[2%];
+}
+
+.btn-join {
+  @apply text-color-green-light border-color-green-light bg-color-white font-semibold hover:text-color-white;
 }
 
 .search-header, .search-carousel {
@@ -79,16 +89,22 @@ body {
 }
 
 header {
-  @apply flex justify-between items-center fixed w-[100%] mx-[--mg-20] px-[--pd-32] h-[80px] z-10;
+  @apply fixed w-[100%] px-[--pd-32] h-[120px] z-50 bg-color-white flex flex-col justify-evenly py-[--pd-12] gap-4;
 }
-header ul {
+header .top {
+  @apply flex justify-between items-center;
+}
+header .top ul {
   @apply flex justify-evenly items-center gap-4;
 }
-header ul li {
-  @apply text-color-white hover:text-color-green-light cursor-pointer;
+header .top ul li {
+  @apply hover:text-color-green-light cursor-pointer;
 }
-header ul li.dif {
+header .top ul li.dif {
   @apply text-color-puple hover:text-color-green-light cursor-pointer;
+}
+header .bottom {
+  @apply h-[30px] border-t-[1px] border-t-color-white-light grid grid-cols-9 items-center;
 }
 
 footer {
@@ -132,7 +148,7 @@ footer .line-top {
 }
 
 .carousel {
-  @apply bg-carousel1 h-[600px] w-[100vw] bg-no-repeat relative z-0;
+  @apply bg-carousel1 h-[700px] w-[100vw] bg-no-repeat relative z-0 bg-center bg-cover;
 }
 .carousel .carousel-content {
   @apply absolute top-[30%] left-[5%] text-color-white w-[50%];
@@ -164,7 +180,7 @@ footer .line-top {
   @apply relative;
 }
 .card .card-img img {
-  @apply w-[240px] h-[345px] rounded-md;
+  @apply w-[100%] h-[345px] rounded-md;
 }
 .card .card-img .card-text {
   @apply absolute top-5 left-5 text-color-white;
@@ -173,7 +189,22 @@ footer .line-top {
   @apply text-font-14;
 }
 .card .card-img .card-text h3 {
-  @apply text-font-30 font-semibold;
+  @apply text-[24px] font-semibold relative z-10;
+}
+.card .card-img:after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-black);
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 0;
+  opacity: 0.3;
+  border-radius: 4px;
+}
+.card:hover {
+  @apply cursor-pointer opacity-[0.8];
 }
 
 .popular-service {
@@ -342,4 +373,57 @@ footer .line-top {
 
 .slideMember {
   @apply px-[--pd-32] py-[--pd-48];
+}
+.slideMember .wapper {
+  @apply relative h-56 overflow-hidden rounded-lg md:h-96;
+}
+
+.workNav {
+  @apply relative pt-2;
+}
+.workNav .title {
+  @apply relative;
+}
+.workNav .title:after {
+  content: "";
+  background-color: var(--color-green);
+  width: 0%;
+  height: 2px;
+  display: inline-block;
+  position: absolute;
+  bottom: -5px;
+}
+.workNav .title .collape-nav {
+  @apply bg-color-white px-[--pd-16] absolute top-5 w-[300%] opacity-0 h-[200px] hidden pt-[--pd-32];
+}
+.workNav .title .collape-nav .subGroup h5 {
+  @apply font-semibold;
+}
+.workNav .title .collape-nav .subGroup ul {
+  @apply pt-2;
+}
+.workNav .title .collape-nav .subGroup ul li {
+  @apply py-1 cursor-pointer;
+}
+.workNav .title .collape-nav .subGroup ul li:hover {
+  @apply underline;
+}
+.workNav .title:hover {
+  @apply cursor-pointer;
+}
+.workNav .title:hover::after {
+  @apply w-[90%];
+}
+.workNav .title:hover .collape-nav {
+  @apply opacity-[0] grid grid-cols-2;
+}
+.workNav .title:hover .collape-nav.active {
+  @apply opacity-[1] grid grid-cols-2;
+}
+
+.slide-service {
+  @apply px-[--pd-32] py-[--pd-48];
+}
+.slide-service .wapper {
+  @apply relative h-56 overflow-hidden rounded-lg md:h-96 grid grid-cols-5 gap-6 items-center;
 }/*# sourceMappingURL=style.css.map */

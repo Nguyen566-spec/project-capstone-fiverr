@@ -24,3 +24,40 @@ export const layChiTietCongViec = createAsyncThunk(
     }
   }
 );
+
+export const getMenuTypeWork = createAsyncThunk(
+  "quanLyCongViec/getMenuTypeWork",
+  async (_, { rejectWithValue }) => {
+    try {
+      const res = await quanLyCongViecService.getMenuChiTietCongViec();
+      return res.data.content;
+    } catch (error) {
+      rejectWithValue(error);
+    }
+  }
+);
+
+export const getTypeWork = createAsyncThunk(
+  "quanLyCongViec/getTypeWork",
+  async (_, { rejectWithValue }) => {
+    try {
+      const res = await quanLyCongViecService.getLoaiCongViec();
+      return res.data.content;
+    } catch (error) {
+      rejectWithValue(error);
+    }
+  }
+);
+
+
+export const getDetailTypeWork = createAsyncThunk(
+  "quanLyCongViec/getDetailTypeWork",
+  async (_, { rejectWithValue }) => {
+    try {
+      const res = await quanLyCongViecService.getChiTietLoaiCongViec();
+      return res.data.content;
+    } catch (error) {
+      rejectWithValue(error);
+    }
+  }
+);

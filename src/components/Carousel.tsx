@@ -19,16 +19,16 @@ const Carousel = (props: Props) => {
           <ul>
             <li>Popular: </li>
             <li>
-              <button className="btn-popular">Website Design</button>
+              <button className="btn-popular">Graphic & Design</button>
             </li>
             <li>
-              <button className="btn-popular">WordPress</button>
+              <button className="btn-popular">Writing</button>
             </li>
             <li>
-              <button className="btn-popular">Logo Design</button>
+              <button className="btn-popular">Digital Marketing</button>
             </li>
             <li>
-              <button className="btn-popular">AI Service</button>
+              <button className="btn-popular">Music</button>
             </li>
           </ul>
         </div>
