@@ -1,19 +1,15 @@
 import React from "react";
 import Carousel from "../components/Carousel";
-import PopularServices from "../components/PopularServices";
 import Introduction from "../components/Introduction";
 import Wegot from "../components/Wegot";
 import FiverrBusiness from "../components/FiverrBusiness";
-import SlideMember from "../components/SlideMember";
+import SliderMember from "../components/SliderMember";
+import SliderService from "../components/SliderService";
 // import CongViecList from "../module/CongViecList";
 
 const Home = () => {
   return (
     <div>
-      {/* <h1 className="text-center font-bold text-4xl p-4">
-        Danh sách công việc
-      </h1>
-      <CongViecList /> */}
       <Carousel />
       <section className="trust">
         <div className="trust-content">
@@ -40,11 +36,15 @@ const Home = () => {
           />
         </div>
       </section>
-      <PopularServices />
+      <SliderService />
       <Introduction />
       <Wegot />
       <FiverrBusiness />
-      <SlideMember />
+      {/* <h1 className="text-center font-bold text-4xl p-4">
+        Danh sách công việc
+      </h1>
+      <CongViecList /> */}
+      <SliderMember />
     </div>
   );
 };
