@@ -22,6 +22,11 @@ export type GetCongViecResponse = {
   saoCongViec: number;
 };
 
+export type GetLoaiCongViecResponse = {
+  id: number;
+  tenLoaiCongViec: string;
+};
+
 export type GetAuthResponse = {
   id: number;
   name: string;

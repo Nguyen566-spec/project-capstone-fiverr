@@ -4,7 +4,7 @@ import MainLayout from "../layout/MainLayout";
 import Home from "../pages/Home";
 import About from "../pages/About";
 import Contact from "../pages/Contact";
-import CongViecDetail from "../pages/CongViecDetail";
+import CategoryDetail from "../pages/CategoryDetail";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
 
@@ -19,8 +19,8 @@ const Router = () => {
           element: <Home />,
         },
         {
-          path: ":id",
-          element: <CongViecDetail />,
+          path: "category/:id",
+          element: <CategoryDetail />,
         },
         {
           path: "about",
