@@ -91,7 +91,7 @@ const Header = () => {
                 </div>
               ) : (
                 <>
-                  <NavLink to="/register">Sign in</NavLink>
+                  <NavLink to="/login">Sign in</NavLink>
                 </>
               )}
             </li>

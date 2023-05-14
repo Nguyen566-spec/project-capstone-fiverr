@@ -4,13 +4,11 @@ import { RootState, useAppDispatch } from "../store";
 import { useForm } from "react-hook-form";
 import { GetAuthResponse } from "../react-app-env";
 import { dangNhap } from "../store/quanLyAuth/thunkAction";
-import { NavLink, Navigate, useNavigate } from "react-router-dom";
-import { quanLyAuthService } from "../services/quanLyAuth.service";
+import { NavLink, Navigate } from "react-router-dom";
 
 const Login = () => {
   const { auth } = useSelector((state: RootState) => state.quanLyAuth);
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -32,11 +30,11 @@ const Login = () => {
             htmlFor="email"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Tài khoản
+            Email
           </label>
           <input
             {...register("email", {
-              required: "Vui lòng nhập email",
+              required: "Please enter your email",
             })}
             type="email"
             id="email"
@@ -49,11 +47,11 @@ const Login = () => {
             htmlFor="password"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Your password
+            Password
           </label>
           <input
             {...register("password", {
-              required: "Vui lòng nhập mật khẩu",
+              required: "Please enter your password",
             })}
             type="password"
             id="password"
@@ -62,8 +60,8 @@ const Login = () => {
           <p className="text-red-500">{errors.password?.message}</p>
         </div>
         <div className="mb-6">
-          <span>Chưa có tài khoản?</span>{" "}
-          <NavLink to="/register">Đăng ký</NavLink>
+          <span>Don't have an account?</span>{" "}
+          <NavLink to="/register">Sign up</NavLink>
         </div>
         <button
           type="submit"

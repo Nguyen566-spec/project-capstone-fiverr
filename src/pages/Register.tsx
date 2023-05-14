@@ -19,11 +19,11 @@ const Register = () => {
           try {
             const res = await quanLyAuthService.dangKy(value);
             if (res.data.statusCode !== 400) {
-              alert("Đăng ký thành công");
+              alert("Sign up success");
               navigate("/login");
             }
           } catch (error) {
-            alert("Đăng ký thất bại");
+            alert("Account is existed");
           }
         })}
       >
@@ -36,7 +36,7 @@ const Register = () => {
           </label>
           <input
             {...register("name", {
-              required: "Vui lòng nhập tên",
+              required: "Please enter your name",
             })}
             type="text"
             id="name"
@@ -53,7 +53,7 @@ const Register = () => {
           </label>
           <input
             {...register("email", {
-              required: "Vui lòng nhập email",
+              required: "Please enter your email",
             })}
             type="email"
             id="email"
@@ -66,11 +66,11 @@ const Register = () => {
             htmlFor="password"
             className="block mb-2 text-sm font-medium text-gray-900"
           >
-            Mật khẩu
+            Password
           </label>
           <input
             {...register("password", {
-              required: "Vui lòng nhập mật khẩu",
+              required: "Please enter your password",
             })}
             type="password"
             id="password"
@@ -83,11 +83,11 @@ const Register = () => {
             htmlFor="phone"
             className="block mb-2 text-sm font-medium text-gray-900"
           >
-            Số điện thoại
+            Phone
           </label>
           <input
             {...register("phone", {
-              required: "Vui lòng nhập số điện thoại",
+              required: "Please enter your phone",
             })}
             type="number"
             id="phone"
@@ -100,11 +100,11 @@ const Register = () => {
             htmlFor="birthday"
             className="block mb-2 text-sm font-medium text-gray-900"
           >
-            Ngày sinh
+            Birthday
           </label>
           <input
             {...register("birthday", {
-              required: "Vui lòng nhập ngày sinh",
+              required: "Please enter your birthday",
             })}
             type="text"
             id="birthday"
@@ -117,7 +117,7 @@ const Register = () => {
             htmlFor="gender"
             className="mr-4 text-sm font-medium text-gray-900"
           >
-            Giới tính
+            Gender
           </label>
           <input
             {...register("gender")}
@@ -135,7 +135,7 @@ const Register = () => {
           </label>
           <input
             {...register("role", {
-              required: "Vui lòng nhập role",
+              required: "Please enter your role",
             })}
             type="text"
             id="role"
@@ -144,7 +144,7 @@ const Register = () => {
           <p className="text-red-500">{errors.role?.message}</p>
         </div>
         <div className="mb-6">
-          <span>Đã có tài khoản?</span> <NavLink to="/login">Đăng nhập</NavLink>
+          <span>Have an account?</span> <NavLink to="/login">Sign in</NavLink>
         </div>
         <button
           type="submit"
