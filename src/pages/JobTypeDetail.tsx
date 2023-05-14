@@ -17,7 +17,7 @@ const JobTypeDetail = () => {
   return (
     <div className="container mx-auto pt-40">
       <h1 className="text-font-32 font-bold mb-8">Job list</h1>
-      <div className="grid grid-cols-4 gap-8">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {danhSachCongViec
           ?.filter((item) => item.maChiTietLoaiCongViec === id)
           .map((i) => (

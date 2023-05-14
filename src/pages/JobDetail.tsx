@@ -16,7 +16,7 @@ const JobDetail = () => {
   });
   return (
     <div className="container mx-auto pt-40">
-      <div className="flex lg:justify-between">
+      <div className="flex flex-col space-y-8 lg:flex-row lg:justify-between">
         <div className="w-full lg:w-3/5">
           <h1 className="text-font-32 font-bold">
             {chiTietCongViec?.tenCongViec}
