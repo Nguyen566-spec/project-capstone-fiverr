@@ -9,6 +9,8 @@ import Register from "../pages/Register";
 import Login from "../pages/Login";
 import JobTypeDetail from "../pages/JobTypeDetail";
 import JobDetail from "../pages/JobDetail";
+import User from "../components/User";
+import AdminLayout from "../layout/AdminLayout";
 
 const Router = () => {
   const elements = useRoutes([
@@ -40,6 +42,10 @@ const Router = () => {
           path: "contact",
           element: <Contact />,
         },
+        {
+          path: "user",
+          element : <User />
+        }
       ],
     },
     {
@@ -50,6 +56,10 @@ const Router = () => {
       path: "/login",
       element: <Login />,
     },
+    {
+      path : "/admin",
+      element: <AdminLayout />
+    }
   ]);
   return elements;
 };

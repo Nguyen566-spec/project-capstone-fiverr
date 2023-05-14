@@ -33,12 +33,14 @@
   --pd-95: 5.95rem;
   --pd-120: 7.5rem;
   --pd-150: 9.35rem;
+  --pd-180: 11.25rem;
   --mg-4: 4px;
   --mg-8: 0.5rem;
   --mg-12: 0.75rem;
   --mg-14: 0.875rem;
   --mg-16: 1rem;
   --mg-20: 1.25rem;
+  --mg-40: 2.5rem;
   --mg-96: 6rem;
   --br-4: 4px;
 }
@@ -426,4 +428,32 @@ footer .line-top {
 }
 .slide-service .wapper {
   @apply relative h-56 overflow-hidden rounded-lg md:h-96 grid grid-cols-5 gap-6 items-center;
+}
+
+.profile {
+  @apply relative text-font-14 leading-[130%];
+}
+.profile .content-top, .profile .content-bottom {
+  @apply bg-color-white border border-color-gray-2 p-[--pd-32] text-font-14 leading-[130%] mb-[--mg-40];
+}
+.profile .content-top input, .profile .content-bottom input {
+  @apply mb-[--mg-20];
+}
+.user-tab {
+  @apply pt-[--pd-180] bg-color-gray-1;
+}
+.user-tab .tab-content {
+  @apply w-[90%] mx-auto flex gap-6 flex-row h-[150vh] py-[--pd-32];
+}
+.user-tab .tab-content .user-profile {
+  @apply w-[35%];
+}
+.user-tab .tab-content .user-order {
+  @apply w-[65%] bg-color-white p-[--pd-32];
+}
+.user-tab .tab-content .user-order .no-item {
+  @apply flex flex-col items-center gap-6 py-[--pd-32];
+}
+.user-tab .tab-content .user-order p {
+  @apply font-semibold;
 }/*# sourceMappingURL=style.css.map */

@@ -68,6 +68,7 @@ const SliderService = (props: Props) => {
           img={item.hinhAnh}
           title={item.tenNhom}
           codeType={item.maLoaiCongviec}
+          key={index}
         />
       );
     });
