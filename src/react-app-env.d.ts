@@ -59,7 +59,7 @@ export type GroupDetailTypeWork = {
   id: number;
   tenNhom: string;
   hinhAnh: string;
-  maLoaiCongViec: number;
+  maLoaiCongviec: number;
   dsChiTietLoai?: DetailTypeWork[];
 };
 

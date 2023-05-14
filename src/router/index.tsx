@@ -7,6 +7,8 @@ import Contact from "../pages/Contact";
 import CategoryDetail from "../pages/CategoryDetail";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
+import JobTypeDetail from "../pages/JobTypeDetail";
+import JobDetail from "../pages/JobDetail";
 
 const Router = () => {
   const elements = useRoutes([
@@ -21,6 +23,14 @@ const Router = () => {
         {
           path: "category/:id",
           element: <CategoryDetail />,
+        },
+        {
+          path: "job-type/:id",
+          element: <JobTypeDetail />,
+        },
+        {
+          path: "job/:id",
+          element: <JobDetail />,
         },
         {
           path: "about",

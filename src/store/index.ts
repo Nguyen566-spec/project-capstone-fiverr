@@ -2,12 +2,10 @@ import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 import { quanLyCongViecReducer } from "./quanLyCongViec/slice";
 import { quanLyAuthActions, quanLyAuthReducer } from "./quanLyAuth/slice";
-import { quanLyLoaiCongViecReducer } from "./quanLyLoaiCongViec/slice";
 
 export const store = configureStore({
   reducer: {
     quanLyCongViec: quanLyCongViecReducer,
-    quanLyLoaiCongViec: quanLyLoaiCongViecReducer,
     quanLyAuth: quanLyAuthReducer,
   },
 });
