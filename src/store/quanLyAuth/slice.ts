@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { dangNhap } from "./thunkAction";
+import { dangNhap, getUserInfor, updateUser } from "./thunkAction";
 import { GetAuthResponse, GetTokenResponse } from "../../react-app-env";
 
 type InitialState = {
   auth?: GetTokenResponse<GetAuthResponse>;
+  user?: GetAuthResponse;
 };
 
 const initialState: InitialState = {
@@ -27,9 +28,20 @@ export const { reducer: quanLyAuthReducer, actions: quanLyAuthActions } =
       },
     },
     extraReducers(builder) {
-      builder.addCase(dangNhap.fulfilled, (state, action) => {
-        state.auth = action.payload;
-        localStorage.setItem("user", JSON.stringify(action.payload));
-      });
+      builder
+        .addCase(dangNhap.fulfilled, (state, action) => {
+          state.auth = action.payload;
+          localStorage.setItem("user", JSON.stringify(action.payload));
+        })
+        .addCase(getUserInfor.fulfilled, (state, action) => {
+          state.user = action.payload;
+        })
+        .addCase(updateUser.fulfilled, (state, action) => {
+          if (state.auth?.user && action.payload) {
+            state.auth.user = action.payload;
+            state.auth.user.password = ""
+            localStorage.setItem("user", JSON.stringify(state.auth))
+          }
+        });
     },
   });

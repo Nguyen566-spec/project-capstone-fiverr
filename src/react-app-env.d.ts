@@ -35,10 +35,10 @@ export type GetAuthResponse = {
   certification: string[];
 };
 
-// export type GetDangNhapResponse = {
-//   email: string;
-//   password: string;
-// };
+export type GetDangNhapResponse = {
+  email: string;
+  password: string;
+};
 
 export type GetTypeWorkResponse = {
   id: number;

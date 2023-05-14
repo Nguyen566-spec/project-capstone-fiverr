@@ -28,6 +28,8 @@ module.exports = {
       "color-black": "#222325",
       "color-black-light": "#404145",
       "color-gray": "#74767e",
+      "color-gray-1" : "#f7f7f7",
+      "color-gray-2" : "#dadbdd",
       "color-gray-light": "#62646a",
       "color-gray-light-2": "#b5b6ba",
       "color-white": "#fff",

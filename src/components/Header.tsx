@@ -16,15 +16,19 @@ const Header = () => {
     (state: RootState) => state.quanLyCongViec
   );
 
-  useEffect(()=>{
-    dispatch(getMenuTypeWork())
-    
-  },[dispatch])
+  useEffect(() => {
+    dispatch(getMenuTypeWork());
+  }, [dispatch]);
 
   const renderNavWork = () => {
     return menuLoaiCongViec?.map((item: MenuTypeWork, index: number) => {
       return (
-        <WorkNav id={item.id} title={item.tenLoaiCongViec} listGroupType={item.dsNhomChiTietLoai} key={index}/>
+        <WorkNav
+          id={item.id}
+          title={item.tenLoaiCongViec}
+          listGroupType={item.dsNhomChiTietLoai}
+          key={index}
+        />
       );
     });
   };
@@ -33,7 +37,7 @@ const Header = () => {
     <header>
       <div className="top">
         <div>
-          <NavLink to="#" className="site-logo">
+          <NavLink to="/" className="site-logo">
             <svg
               width="89"
               height="27"
@@ -66,9 +70,19 @@ const Header = () => {
             </li>
             <li>Become a Seller</li>
             <li>
+              <NavLink to="/user">
+                {auth ? (
+                  <>
+                    <h1>{auth.user.name}</h1>
+                  </>
+                ) : (
+                  ""
+                )}
+              </NavLink>
+            </li>
+            <li>
               {auth ? (
-                <>
-                  {/* <h1>Hello, {auth.user}</h1> */}
+                <div className="user">
                   <button
                     onClick={() => {
                       dispatch(quanLyAuthActions.dangXuat());
@@ -77,7 +91,7 @@ const Header = () => {
                   >
                     Logout
                   </button>
-                </>
+                </div>
               ) : (
                 <>
                   <NavLink to="/register">Sign in</NavLink>
@@ -92,11 +106,7 @@ const Header = () => {
           </ul>
         </div>
       </div>
-      <div className="bottom">
-        {
-          renderNavWork()
-        }
-        </div>
+      <div className="bottom">{renderNavWork()}</div>
     </header>
   );
 };
