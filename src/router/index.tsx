@@ -4,9 +4,11 @@ import MainLayout from "../layout/MainLayout";
 import Home from "../pages/Home";
 import About from "../pages/About";
 import Contact from "../pages/Contact";
-import CongViecDetail from "../pages/CongViecDetail";
+import CategoryDetail from "../pages/CategoryDetail";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
+import JobTypeDetail from "../pages/JobTypeDetail";
+import JobDetail from "../pages/JobDetail";
 import User from "../components/User";
 import AdminLayout from "../layout/AdminLayout";
 
@@ -21,8 +23,16 @@ const Router = () => {
           element: <Home />,
         },
         {
-          path: ":id",
-          element: <CongViecDetail />,
+          path: "category/:id",
+          element: <CategoryDetail />,
+        },
+        {
+          path: "job-type/:id",
+          element: <JobTypeDetail />,
+        },
+        {
+          path: "job/:id",
+          element: <JobDetail />,
         },
         {
           path: "about",

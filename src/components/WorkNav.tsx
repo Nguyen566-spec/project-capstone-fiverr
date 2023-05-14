@@ -1,6 +1,7 @@
 import React from "react";
 import { DetailTypeWork, GroupDetailTypeWork } from "../react-app-env";
 import clsx from "clsx";
+import { NavLink } from "react-router-dom";
 
 type Props = {
   id: number;
@@ -18,7 +19,13 @@ const WorkNav = (props: Props) => {
             <ul>
               {item.dsChiTietLoai?.map(
                 (detail: DetailTypeWork, index: number) => {
-                  return <li key={index}>{detail.tenChiTiet}</li>;
+                  return (
+                    <li key={index}>
+                      <NavLink to={`/job-type/${detail.id}`}>
+                        {detail.tenChiTiet}
+                      </NavLink>
+                    </li>
+                  );
                 }
               )}
             </ul>
@@ -31,9 +38,13 @@ const WorkNav = (props: Props) => {
     <div className="workNav">
       <div className="title">
         <p>{props.title}</p>
-        <div className={clsx("collape-nav",{
-          active : (props.listGroupType?.length !== 0) ? true : false,
-        })}>{renderSubGroup()}</div>
+        <div
+          className={clsx("collape-nav", {
+            active: props.listGroupType?.length !== 0 ? true : false,
+          })}
+        >
+          {renderSubGroup()}
+        </div>
       </div>
     </div>
   );
