@@ -11,6 +11,8 @@ import JobTypeDetail from "../pages/JobTypeDetail";
 import JobDetail from "../pages/JobDetail";
 import User from "../components/User";
 import AdminLayout from "../layout/AdminLayout";
+import Checkout from "../pages/Checkout";
+import Success from "../pages/Success";
 
 const Router = () => {
   const elements = useRoutes([
@@ -33,6 +35,14 @@ const Router = () => {
         {
           path: "job/:id",
           element: <JobDetail />,
+        },
+        {
+          path: "checkout/:id",
+          element: <Checkout />,
+        },
+        {
+          path: "success",
+          element: <Success />,
         },
         {
           path: "about",
