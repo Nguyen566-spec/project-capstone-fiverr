@@ -66,5 +66,13 @@ export type GroupDetailTypeWork = {
 export type MenuTypeWork = {
   id: number;
   tenLoaiCongViec: string;
-  dsNhomChiTietLoai?: GroupDetailTypeWork[]; 
+  dsNhomChiTietLoai?: GroupDetailTypeWork[];
+};
+
+export type ThueCongViecResponse = {
+  id?: number;
+  maCongViec: number;
+  maNguoiThue: number;
+  ngayThue: string;
+  hoanThanh: boolean;
 };

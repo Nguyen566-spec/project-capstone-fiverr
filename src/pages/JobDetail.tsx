@@ -35,7 +35,7 @@ const JobDetail = () => {
           </p>
           <p className="my-8">{chiTietCongViec?.moTaNgan}</p>
           <NavLink
-            to={`checkout/${chiTietCongViec?.id}`}
+            to={`/checkout/${chiTietCongViec?.id}`}
             className="block p-2 text-center bg-color-black text-color-white rounded"
           >
             Continue <i className="fa-solid fa-arrow-right"></i>
