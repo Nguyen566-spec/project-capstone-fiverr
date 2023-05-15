@@ -9,6 +9,11 @@ import Register from "../pages/Register";
 import Login from "../pages/Login";
 import User from "../components/User";
 import AdminLayout from "../layout/AdminLayout";
+import ManageWork from "../components/admin/ManageWork";
+import ManageService from "../components/admin/ManageService";
+import ManageUser from "../components/admin/ManageUser";
+import ManageTypeWork from "../components/admin/ManageTypeWork";
+import Dasboard from "../pages/Dasboard";
 
 const Router = () => {
   const elements = useRoutes([
@@ -48,7 +53,29 @@ const Router = () => {
     },
     {
       path : "/admin",
-      element: <AdminLayout />
+      element: <AdminLayout />,
+      children: [
+        {
+          path : "",
+          element : <Dasboard />
+        },
+        {
+          path: "manage-work",
+          element: <ManageWork />,
+        },
+        {
+          path: "manage-service",
+          element: <ManageService />,
+        },
+        {
+          path: "manage-user",
+          element: <ManageUser />,
+        },
+        {
+          path: "manage-type-work",
+          element : <ManageTypeWork />
+        }
+      ],
     }
   ]);
   return elements;

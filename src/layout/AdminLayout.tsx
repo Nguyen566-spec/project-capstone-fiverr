@@ -1,11 +1,20 @@
-import React from 'react'
+import React from "react";
+import { Outlet } from "react-router-dom";
+import HeaderAdmin from "../components/admin/HeaderAdmin";
+import Navbar from "../components/admin/Navbar";
 
-type Props = {}
+type Props = {};
 
 const AdminLayout = (props: Props) => {
   return (
-    <div>AdminLayout</div>
-  )
-}
+    <>
+      <HeaderAdmin />
+      <div className="flex flex-wap bg-gray-100 w-full h-screen">
+        <Navbar />
+        <Outlet />
+      </div>
+    </>
+  );
+};
 
-export default AdminLayout
+export default AdminLayout;

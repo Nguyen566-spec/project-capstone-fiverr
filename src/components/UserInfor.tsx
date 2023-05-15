@@ -166,7 +166,7 @@ const UserInfor = (props: Props) => {
           /> */}
           <div className="m-6 text-center">
             <button
-              className="w-full px-4 py-2 font-bold text-white bg-indigo-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline"
+              className="btn-search-carousel rounded-lg text-color-white font-semibold"
               type="submit"
             >
               Update Account

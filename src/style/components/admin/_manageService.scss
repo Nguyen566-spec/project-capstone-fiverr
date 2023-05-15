@@ -1,0 +1,6 @@
+.manage-service {
+  @apply pt-[--pd-120] px-[--pd-32] bg-color-white-light-2 w-[100%];
+  .content {
+    @apply border border-color-white-light;
+  }
+}

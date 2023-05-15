@@ -63,3 +63,11 @@ export type MenuTypeWork = {
   tenLoaiCongViec: string;
   dsNhomChiTietLoai?: GroupDetailTypeWork[]; 
 };
+
+interface CRUD {
+  create(newItem :object);
+  update(id : number | string ,itemUpdate : object);
+  search(keyword: string);
+  delete(id:number | string);
+  getAll()
+}

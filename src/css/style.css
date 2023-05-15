@@ -82,6 +82,28 @@ body {
   @apply text-color-green-light border-color-green-light bg-color-white font-semibold hover:text-color-white;
 }
 
+.btn-create {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 43px;
+  min-width: 43px;
+  border-radius: 5px;
+  padding: 0 5px;
+  color: gray;
+  background: transparent;
+  border: 1px solid gray;
+}
+.btn-create:hover {
+  border: 1px solid gray;
+  background-color: white;
+}
+.btn-create svg {
+  fill: gray;
+  width: 20px;
+  height: 20px;
+}
+
 .search-header, .search-carousel {
   @apply w-[450px] px-[--pd-12] py-[--pd-5] border-[1px] border-color-gray-light-2 rounded-l-md focus:border-color-black-light;
 }
@@ -456,4 +478,11 @@ footer .line-top {
 }
 .user-tab .tab-content .user-order p {
   @apply font-semibold;
+}
+
+.manage-service {
+  @apply pt-[--pd-120] px-[--pd-32] bg-color-white-light-2 w-[100%];
+}
+.manage-service .content {
+  @apply border border-color-white-light;
 }/*# sourceMappingURL=style.css.map */
