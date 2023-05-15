@@ -4,9 +4,11 @@ import MainLayout from "../layout/MainLayout";
 import Home from "../pages/Home";
 import About from "../pages/About";
 import Contact from "../pages/Contact";
-import CongViecDetail from "../pages/CongViecDetail";
+import CategoryDetail from "../pages/CategoryDetail";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
+import JobTypeDetail from "../pages/JobTypeDetail";
+import JobDetail from "../pages/JobDetail";
 import User from "../components/User";
 import AdminLayout from "../layout/AdminLayout";
 import ManageWork from "../components/admin/ManageWork";
@@ -14,6 +16,8 @@ import ManageService from "../components/admin/ManageService";
 import ManageUser from "../components/admin/ManageUser";
 import ManageTypeWork from "../components/admin/ManageTypeWork";
 import Dasboard from "../pages/Dasboard";
+import Checkout from "../pages/Checkout";
+import Success from "../pages/Success";
 
 const Router = () => {
   const elements = useRoutes([
@@ -26,8 +30,24 @@ const Router = () => {
           element: <Home />,
         },
         {
-          path: ":id",
-          element: <CongViecDetail />,
+          path: "category/:id",
+          element: <CategoryDetail />,
+        },
+        {
+          path: "job-type/:id",
+          element: <JobTypeDetail />,
+        },
+        {
+          path: "job/:id",
+          element: <JobDetail />,
+        },
+        {
+          path: "checkout/:id",
+          element: <Checkout />,
+        },
+        {
+          path: "success",
+          element: <Success />,
         },
         {
           path: "about",

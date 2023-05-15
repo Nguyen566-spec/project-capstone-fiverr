@@ -1,5 +1,6 @@
 export type GetHttpResponse<T> = {
   statusCode: number;
+  message?: string; 
   content: T;
   dateTime: Date;
 };
@@ -20,6 +21,11 @@ export type GetCongViecResponse = {
   maChiTietLoaiCongViec: number;
   moTaNgan: string;
   saoCongViec: number;
+};
+
+export type GetLoaiCongViecResponse = {
+  id: number;
+  tenLoaiCongViec: string;
 };
 
 export type GetAuthResponse = {
@@ -54,14 +60,22 @@ export type GroupDetailTypeWork = {
   id: number;
   tenNhom: string;
   hinhAnh: string;
-  maLoaiCongViec: number;
+  maLoaiCongviec: number;
   dsChiTietLoai?: DetailTypeWork[];
 };
 
 export type MenuTypeWork = {
   id: number;
   tenLoaiCongViec: string;
-  dsNhomChiTietLoai?: GroupDetailTypeWork[]; 
+  dsNhomChiTietLoai?: GroupDetailTypeWork[];
+};
+
+export type ThueCongViecResponse = {
+  id?: number;
+  maCongViec: number;
+  maNguoiThue: number;
+  ngayThue: string;
+  hoanThanh: boolean;
 };
 
 interface CRUD {

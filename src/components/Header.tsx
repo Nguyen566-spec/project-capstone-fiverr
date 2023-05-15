@@ -23,12 +23,9 @@ const Header = () => {
   const renderNavWork = () => {
     return menuLoaiCongViec?.map((item: MenuTypeWork, index: number) => {
       return (
-        <WorkNav
-          id={item.id}
-          title={item.tenLoaiCongViec}
-          listGroupType={item.dsNhomChiTietLoai}
-          key={index}
-        />
+        <NavLink to={`category/${item.id}`} key={index}>
+          <WorkNav id={item.id} title={item.tenLoaiCongViec} listGroupType={item.dsNhomChiTietLoai}/>
+        </NavLink>
       );
     });
   };
@@ -94,7 +91,7 @@ const Header = () => {
                 </div>
               ) : (
                 <>
-                  <NavLink to="/register">Sign in</NavLink>
+                  <NavLink to="/login">Sign in</NavLink>
                 </>
               )}
             </li>
