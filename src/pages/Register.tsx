@@ -32,7 +32,7 @@ const Register = () => {
             htmlFor="name"
             className="block mb-2 text-sm font-medium text-gray-900"
           >
-            Tên
+            Name
           </label>
           <input
             {...register("name", {
@@ -144,14 +144,23 @@ const Register = () => {
           <p className="text-red-500">{errors.role?.message}</p>
         </div>
         <div className="mb-6">
-          <span>Have an account?</span> <NavLink to="/login">Sign in</NavLink>
+          <span>Have an account?</span>{" "}
+          <NavLink to="/login" className="text-color-green hover:underline">
+            Sign in
+          </NavLink>
         </div>
         <button
           type="submit"
-          className="px-4 py-2 rounded bg-blue-500 text-white"
+          className="text-color-white bg-color-green hover:bg-color-green-light font-medium rounded-lg text-sm px-5 py-2.5"
         >
           Submit
         </button>
+        <NavLink
+          to="/"
+          className="text-color-white bg-color-green hover:bg-color-green-light font-medium rounded-lg text-sm px-5 py-2.5"
+        >
+          Back to home
+        </NavLink>
       </form>
     </div>
   );

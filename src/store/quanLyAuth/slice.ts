@@ -30,7 +30,9 @@ export const { reducer: quanLyAuthReducer, actions: quanLyAuthActions } =
     extraReducers(builder) {
       builder
         .addCase(dangNhap.fulfilled, (state, action) => {
-          state.auth = action.payload;
+          action.payload
+            ? (state.auth = action.payload)
+            : alert("Incorrect email or password");
           localStorage.setItem("user", JSON.stringify(action.payload));
         })
         .addCase(getUserInfor.fulfilled, (state, action) => {
@@ -39,8 +41,8 @@ export const { reducer: quanLyAuthReducer, actions: quanLyAuthActions } =
         .addCase(updateUser.fulfilled, (state, action) => {
           if (state.auth?.user && action.payload) {
             state.auth.user = action.payload;
-            state.auth.user.password = ""
-            localStorage.setItem("user", JSON.stringify(state.auth))
+            state.auth.user.password = "";
+            localStorage.setItem("user", JSON.stringify(state.auth));
           }
         });
     },

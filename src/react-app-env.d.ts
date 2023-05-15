@@ -1,5 +1,6 @@
 export type GetHttpResponse<T> = {
   statusCode: number;
+  message?: string; 
   content: T;
   dateTime: Date;
 };
