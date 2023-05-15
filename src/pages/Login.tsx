@@ -61,14 +61,22 @@ const Login = () => {
         </div>
         <div className="mb-6">
           <span>Don't have an account?</span>{" "}
-          <NavLink to="/register">Sign up</NavLink>
+          <NavLink to="/register" className="hover:underline text-color-green">
+            Sign up
+          </NavLink>
         </div>
         <button
           type="submit"
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+          className="text-color-white bg-color-green hover:bg-color-green-light font-medium rounded-lg text-sm px-5 py-2.5"
         >
           Submit
         </button>
+        <NavLink
+          to="/"
+          className="text-color-white bg-color-green hover:bg-color-green-light font-medium rounded-lg text-sm px-5 py-2.5"
+        >
+          Back to home
+        </NavLink>
       </form>
     </div>
   );
