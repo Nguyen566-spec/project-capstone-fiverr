@@ -73,9 +73,8 @@ export const uploadAvatar = createAsyncThunk(
   "quanLyAuth/uploadAvatar",
   async (payload: FormData, { rejectWithValue }) => {
     try {
-      console.log(payload)
-      // const res = await quanLyAuthService.uploadAvatar(payload);
-      // return res.data.content;
+      const res = await quanLyAuthService.uploadAvatar(payload);
+      return res.data.content;
     } catch (error) {
       rejectWithValue(error);
     }
