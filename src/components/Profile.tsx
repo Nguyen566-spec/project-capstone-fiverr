@@ -11,7 +11,6 @@ const Profile = (props: Props) => {
   const { auth } = useSelector((state: RootState) => state.quanLyAuth);
   const [showUserInfor, setShowUserInfor] = useState(false);
   const dispatch = useAppDispatch();
-  // const [imgSrc, setImgSrc] = useState("");
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     try {
       if (e.target.files) {
@@ -25,9 +24,6 @@ const Profile = (props: Props) => {
       alert("Update avatar failed");
     }
   };
-  // useEffect(() => {
-  //   dispatch(uploadAvatar(imgSrc));
-  // }, [dispatch, imgSrc]);
   if (auth !== undefined) {
     return (
       <div className="profile">
