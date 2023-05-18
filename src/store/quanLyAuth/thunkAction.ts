@@ -15,24 +15,27 @@ export const dangNhap = createAsyncThunk(
   }
 );
 
-export const updateUser = createAsyncThunk("quanLyAuth/updateUser",
-  async (payload: FieldValues , { rejectWithValue}) =>{
+export const updateUser = createAsyncThunk(
+  "quanLyAuth/updateUser",
+  async (payload: FieldValues, { rejectWithValue }) => {
     try {
-      const res = await quanLyAuthService.updateUser(payload.id,payload);
+      const res = await quanLyAuthService.updateUser(payload.id, payload);
       return res.data.content;
     } catch (error) {
-      rejectWithValue(error)
+      rejectWithValue(error);
     }
   }
-)
+);
 
-export const getUserInfor = createAsyncThunk("quanLyAuth/getUserInfor",
-  async (id:number , { rejectWithValue}) =>{
+
+export const getUserInfor = createAsyncThunk(
+  "quanLyAuth/getUserInfor",
+  async (id: number, { rejectWithValue }) => {
     try {
       const res = await quanLyAuthService.getUserInfor(id);
       return res.data.content;
     } catch (error) {
-      rejectWithValue(error)
+      rejectWithValue(error);
     }
   }
 )
@@ -50,6 +53,30 @@ export const getListUser = createAsyncThunk(
       return res.data.content
     } catch (error) {
       rejectWithValue(error)
+    }
+  }
+);
+
+export const layDanhSachUser = createAsyncThunk(
+  "quanLyAuth/layDanhSachUser",
+  async (_, { rejectWithValue }) => {
+    try {
+      const res = await quanLyAuthService.layDanhSachUser();
+      return res.data.content;
+    } catch (error) {
+      rejectWithValue(error);
+    }
+  }
+);
+
+export const uploadAvatar = createAsyncThunk(
+  "quanLyAuth/uploadAvatar",
+  async (payload: string, { rejectWithValue }) => {
+    try {
+      const res = await quanLyAuthService.uploadAvatar(payload);
+      return res.data.content;
+    } catch (error) {
+      rejectWithValue(error);
     }
   }
 );

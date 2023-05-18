@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { dangNhap, getListUser, getUserInfor, updateUser } from "./thunkAction";
+import { dangNhap, getListUser, getUserInfor, updateUser, uploadAvatar,layDanhSachUser } from "./thunkAction";
 import { GetAuthResponse, GetTokenResponse } from "../../react-app-env";
 
 type InitialState = {
@@ -7,12 +7,15 @@ type InitialState = {
   user?: GetAuthResponse;
   listUser ?: GetAuthResponse[];
   totalRow ?: number;
+  userList?: GetAuthResponse[];
 };
 
 const initialState: InitialState = {
   auth: undefined,
   listUser : [],
   totalRow: undefined,
+  user: undefined,
+  userList: [],
 };
 
 export const { reducer: quanLyAuthReducer, actions: quanLyAuthActions } =
@@ -42,6 +45,9 @@ export const { reducer: quanLyAuthReducer, actions: quanLyAuthActions } =
         .addCase(getUserInfor.fulfilled, (state, action) => {
           state.user = action.payload;
         })
+        .addCase(layDanhSachUser.fulfilled, (state, action) => {
+          state.userList = action.payload;
+        })
         .addCase(updateUser.fulfilled, (state, action) => {
           if (state.auth?.user && action.payload) {
             state.auth.user = action.payload;
@@ -55,5 +61,10 @@ export const { reducer: quanLyAuthReducer, actions: quanLyAuthActions } =
             state.totalRow = action.payload.totalRow;
           }
         })
+        .addCase(uploadAvatar.fulfilled, (state, action) => {
+          if (state.auth?.user && action.payload) {
+            state.auth.user = action.payload;
+          }
+        });
     },
   });

@@ -3,14 +3,15 @@ import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../store";
 import { useForm } from "react-hook-form";
 import InputForm from "./core/InputForm";
-import { message } from "antd";
+import { Checkbox, message } from "antd";
 import { updateUser } from "../store/quanLyAuth/thunkAction";
+import { CheckboxChangeEvent } from "antd/es/checkbox";
 
 type Props = {};
 
 const UserInfor = (props: Props) => {
   const { auth } = useSelector((state: RootState) => state.quanLyAuth);
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   const {
     register,
     handleSubmit,
@@ -20,10 +21,10 @@ const UserInfor = (props: Props) => {
     mode: "onChange",
   });
 
-  const onSubmit = async (data:any) => {
+  const onSubmit = async (data: any) => {
     try {
       await dispatch(updateUser(data));
-      message.success("Update account success")
+      message.success("Update account success");
     } catch (error) {
       console.log(error);
       message.error("Update account fail");
@@ -38,12 +39,12 @@ const UserInfor = (props: Props) => {
         setValue("name", res?.name || "");
         setValue("phone", res?.phone || "");
         setValue("birthday", res?.birthday || "");
-        setValue("gender", res?.gender || "");
+        setValue("gender", res?.gender);
         setValue("email", res?.email || "");
         setValue("password", "");
         setValue("role", res?.role || "");
         setValue("skill", []);
-        setValue("certification",[]);
+        setValue("certification", []);
       } catch (error) {
         console.log(error);
       }
@@ -68,15 +69,16 @@ const UserInfor = (props: Props) => {
             disabled={false}
             error={errors.name?.message}
           />
-          <InputForm
-            {...register("gender", {
-              required: "Please enter content",
-            })}
-            label="Gender"
-            type="text"
+          <Checkbox
+            {...register("gender")}
             disabled={false}
-            error={errors.gender?.message}
-          />
+            defaultChecked={auth?.user.gender}
+            onChange={(e: CheckboxChangeEvent) =>
+              setValue("gender", e.target.checked)
+            }
+          >
+            Gender
+          </Checkbox>
           <InputForm
             {...register("phone", {
               required: "Please enter content",

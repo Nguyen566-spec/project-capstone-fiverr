@@ -35,6 +35,7 @@ export type GetAuthResponse = {
   password: string;
   phone: string;
   birthday: string;
+  avatar?: string;
   gender: boolean;
   role: string;
   skill: string[];
@@ -100,3 +101,19 @@ interface CRUD {
   delete(id: number | string);
   getAll();
 }
+export type BinhLuanResponse = {
+  ngayBinhLuan: string;
+  noiDung: string;
+  saoBinhLuan: number;
+  tenNguoiBinhLuan: string;
+  avatar: string;
+};
+
+export type AddBinhLuanResponse = {
+  id?: number;
+  maCongViec: number;
+  maNguoiBinhLuan: number;
+  ngayBinhLuan: string;
+  noiDung: string;
+  saoBinhLuan: number;
+};
