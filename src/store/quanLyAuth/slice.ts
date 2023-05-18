@@ -1,14 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { dangNhap, getUserInfor, updateUser } from "./thunkAction";
+import { dangNhap, getListUser, getUserInfor, updateUser } from "./thunkAction";
 import { GetAuthResponse, GetTokenResponse } from "../../react-app-env";
 
 type InitialState = {
   auth?: GetTokenResponse<GetAuthResponse>;
   user?: GetAuthResponse;
+  listUser ?: GetAuthResponse[];
+  totalRow ?: number;
 };
 
 const initialState: InitialState = {
   auth: undefined,
+  listUser : [],
+  totalRow: undefined,
 };
 
 export const { reducer: quanLyAuthReducer, actions: quanLyAuthActions } =
@@ -44,6 +48,12 @@ export const { reducer: quanLyAuthReducer, actions: quanLyAuthActions } =
             state.auth.user.password = "";
             localStorage.setItem("user", JSON.stringify(state.auth));
           }
-        });
+        })
+        .addCase(getListUser.fulfilled, (state,action)=>{
+          if (action.payload) {
+            state.listUser = action.payload.data;
+            state.totalRow = action.payload.totalRow;
+          }
+        })
     },
   });

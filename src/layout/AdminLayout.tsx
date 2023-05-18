@@ -9,7 +9,7 @@ const AdminLayout = (props: Props) => {
   return (
     <>
       <HeaderAdmin />
-      <div className="flex flex-wap bg-gray-100 w-full h-screen">
+      <div className="flex flex-wap bg-gray-100 w-full">
         <Navbar />
         <Outlet />
       </div>

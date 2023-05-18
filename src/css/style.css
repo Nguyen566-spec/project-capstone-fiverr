@@ -10,6 +10,8 @@
   --color-puple-dark: #0d084d;
   --color-puple: #1e1692;
   --color-puple-light: #446ee7;
+  --color-red: rgb(120, 12, 12);
+  --color-yellow: rgb(159, 159, 7);
   --font-main: 1rem;
   --font-10: 0.625rem;
   --font-14: 0.875rem;
@@ -481,8 +483,17 @@ footer .line-top {
 }
 
 .manage-service {
-  @apply pt-[--pd-120] px-[--pd-32] bg-color-white-light-2 w-[100%];
+  @apply pt-[--pd-120] px-[--pd-32] bg-color-white-light-2 w-[100%] overflow-hidden;
 }
 .manage-service .content {
-  @apply border border-color-white-light;
+  @apply border border-color-white-light p-4 bg-color-white;
+}
+.manage-service .content .group-btn {
+  @apply flex flex-wrap justify-between p-4;
+}
+.manage-service .content .group-btn input {
+  @apply w-[260px] rounded-lg p-2 bg-color-white-light-2 border;
+}
+.manage-service .content .table-manage {
+  @apply pt-[--pd-32];
 }/*# sourceMappingURL=style.css.map */

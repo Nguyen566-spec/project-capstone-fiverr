@@ -8,10 +8,10 @@ const HeaderAdmin = (props: Props) => {
   const [showSetting, setShowSetting] = useState(false);
 
   return (
-    <div className="flex items-center space-x-4 p-2 mb-5 absolute w-[100%] top-0 right-0 justify-end"
+    <div className="flex items-center space-x-4 p-2 mb-5 absolute w-[100%] top-[15px] right-[30px] justify-end bg"
     >
       <div
-        className="flex items-center space-x-4 p-2 mb-5 rounded-lg border border-color-white-light cursor-pointer"
+        className="flex items-center space-x-4 p-2 mb-5 rounded-lg border border-color-white-light cursor-pointer bg-color-white"
         onClick={() => {
           setShowSetting(!showSetting);
         }}
@@ -46,7 +46,7 @@ const HeaderAdmin = (props: Props) => {
       </div>
       <div
         className={clsx({
-          "absolute top-[60%] right-0 z-0 shadow-lg shadow-color-white-light rounded-lg":
+          "absolute top-[66%] right-0 shadow-lg shadow-color-white-light rounded-lg z-0 bg-color-white":
             showSetting,
           hidden: !showSetting,
         })}

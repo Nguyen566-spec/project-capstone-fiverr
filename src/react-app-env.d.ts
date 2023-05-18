@@ -1,6 +1,6 @@
 export type GetHttpResponse<T> = {
   statusCode: number;
-  message?: string; 
+  message?: string;
   content: T;
   dateTime: Date;
 };
@@ -78,10 +78,25 @@ export type ThueCongViecResponse = {
   hoanThanh: boolean;
 };
 
+export type ResponseByPage<T> = {
+  pageIndex : number;
+  pageSize : number;
+  totalRow : number;
+  keywords : string | null;
+  data : T[];
+}
+
+
+export type QueryDividePage = {
+  pageIndex: number;
+  pageSize: number;
+  keyword?: string;
+};
+
 interface CRUD {
-  create(newItem :object);
-  update(id : number | string ,itemUpdate : object);
+  create(newItem: object);
+  update(id: number | string, itemUpdate: object);
   search(keyword: string);
-  delete(id:number | string);
-  getAll()
+  delete(id: number | string);
+  getAll();
 }
