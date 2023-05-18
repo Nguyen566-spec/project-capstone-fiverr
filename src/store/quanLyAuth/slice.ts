@@ -61,11 +61,11 @@ export const { reducer: quanLyAuthReducer, actions: quanLyAuthActions } =
             state.totalRow = action.payload.totalRow;
           }
         })
-        .addCase(uploadAvatar.fulfilled, (state, action) => {
-          if (state.auth?.user && action.payload) {
-            state.auth.user = action.payload;
-          }
-        })
+        // .addCase(uploadAvatar.fulfilled, (state, action) => {
+        //   if (state.auth?.user && action.payload) {
+        //     // state.auth.user = action.payload;
+        //   }
+        // })
         .addCase(uploadAvatar.rejected, (state, action) => {
           alert(action.payload)
         });
