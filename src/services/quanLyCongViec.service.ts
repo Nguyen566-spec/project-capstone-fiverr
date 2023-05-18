@@ -1,6 +1,6 @@
 import { FieldValues } from "react-hook-form";
 import http from "../constant/api";
-import { GetCongViecResponse, GetHttpResponse ,GetTypeWorkResponse ,MenuTypeWork,GroupDetailTypeWork, ThueCongViecResponse} from "../react-app-env";
+import { GetCongViecResponse, GetHttpResponse ,GetTypeWorkResponse ,MenuTypeWork,GroupDetailTypeWork, ThueCongViecResponse, ResponseByPage} from "../react-app-env";
 
 export const quanLyCongViecService = {
   layDanhSachCongViec: () =>
@@ -13,4 +13,10 @@ export const quanLyCongViecService = {
   getLoaiCongViec : () => http.get<GetHttpResponse<GetTypeWorkResponse[]>>("loai-cong-viec"),
   detailLoaiCongViec : (id: number) => http.get<GetHttpResponse<GetTypeWorkResponse>>(`loai-cong-viec/${id}`),
   addThueCongViec: (cv: FieldValues) => http.post<GetHttpResponse<ThueCongViecResponse>>("thue-cong-viec", cv),
+  getAllHireWork : () => http.get<GetHttpResponse<ThueCongViecResponse[]>>("thue-cong-viec"),
+  getHireWorkWithPage : (query:string) => http.get<GetHttpResponse<ResponseByPage<ThueCongViecResponse>>>(`thue-cong-viec/phan-trang-tim-kiem?${query}`),
+  getDetailHireWork : (id:number) => http.get<GetHttpResponse<ThueCongViecResponse>>(`thue-cong-viec/${id}`),
+  updateDetailHireWork : (id:number,cv:FieldValues) => http.put<GetHttpResponse<ThueCongViecResponse>>(`thue-cong-viec/${id}`,cv),
+  deleteHireWork : (id:number) => http.delete(`thue-cong-viec/${id}`),
+  completedWork : (id:number) => http.post(`thue-cong-viec/hoan-thanh-cong-viec/${id}`) 
 };

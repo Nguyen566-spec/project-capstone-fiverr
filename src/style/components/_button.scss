@@ -31,3 +31,25 @@
   @extend .btn-primary;
   @apply text-color-green-light border-color-green-light bg-color-white font-semibold hover:text-color-white;
 }
+
+.btn-create {
+  display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 43px;
+    min-width: 43px;
+    border-radius: 5px;
+    padding: 0 5px;
+    color: gray;
+    background: transparent;
+    border: 1px solid gray;
+    &:hover {
+        border: 1px solid gray;
+        background-color: white;
+    }
+    svg {
+        fill: gray;
+        width: 20px;
+        height: 20px;
+    }
+}
