@@ -62,6 +62,7 @@ export const { reducer: quanLyAuthReducer, actions: quanLyAuthActions } =
         .addCase(uploadAvatar.fulfilled, (state, action) => {
           if (state.auth?.user && action.payload) {
             state.auth.user = action.payload;
+            localStorage.setItem("user", JSON.stringify(state.auth));
           }
         });
       // .addCase(uploadAvatar.rejected, (state, action) => {

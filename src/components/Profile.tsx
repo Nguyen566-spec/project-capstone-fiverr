@@ -19,9 +19,10 @@ const Profile = (props: Props) => {
         let formData = new FormData();
         formData.append("formFile", file);
         dispatch(uploadAvatar(formData));
+        alert("Update avatar successfully");
       }
     } catch (error) {
-      
+      alert("Update avatar failed");
     }
   };
   // useEffect(() => {
@@ -32,7 +33,11 @@ const Profile = (props: Props) => {
       <div className="profile">
         <div className="profile-content">
           <div className="content-top">
-            <img src={auth.user.avatar} alt="" className="" />
+            <img
+              src={auth.user.avatar}
+              alt={auth.user.name}
+              className="w-36 h-36 mx-auto my-6 rounded-full"
+            />
             <input type="file" name="profile[image]" onChange={handleChange} />
             <div className="flex gap-6">
               <p>
