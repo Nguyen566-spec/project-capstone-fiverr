@@ -12,8 +12,9 @@ export const quanLyAuthService = {
   updateUser : (id:number, payload:FieldValues) => http.put<GetHttpResponse<GetAuthResponse>>(`users/${id}`,payload),
   getUserWithPage : (query:string) => http.get<GetHttpResponse<ResponseByPage<GetAuthResponse>>>(`users/phan-trang-tim-kiem?${query}`),
   uploadAvatar: (payload: string) =>
-    http.post<GetHttpResponse<GetAuthResponse>>("users/upload-avatar", payload),
-    layDanhSachUser: () => http.get<GetHttpResponse<GetAuthResponse[]>>("users"),
-
-  
+    http.post<GetHttpResponse<GetTokenResponse<GetAuthResponse>>>(
+      "auth/signin",
+      payload
+    ),
+  layDanhSachUser: () => http.get<GetHttpResponse<GetAuthResponse[]>>("users"),
 };
