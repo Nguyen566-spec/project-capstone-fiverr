@@ -19,6 +19,6 @@ export const quanLyAuthService = {
     http.get<GetHttpResponse<GetAuthResponse>>(`users/${id}`),
   updateUser: (id: number, payload: FieldValues) =>
     http.put<GetHttpResponse<GetAuthResponse>>(`users/${id}`, payload),
-  uploadAvatar: (payload: string) =>
+  uploadAvatar: (payload: FormData) =>
     http.post<GetHttpResponse<GetAuthResponse>>("users/upload-avatar", payload),
 };
