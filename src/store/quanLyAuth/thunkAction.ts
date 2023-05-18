@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { quanLyAuthService } from "../../services/quanLyAuth.service";
 import { FieldValues } from "react-hook-form";
+import { QueryDividePage } from "../../react-app-env";
 
 export const dangNhap = createAsyncThunk(
   "quanLyAuth/dangNhap",
@@ -26,14 +27,32 @@ export const updateUser = createAsyncThunk(
   }
 );
 
+
 export const getUserInfor = createAsyncThunk(
   "quanLyAuth/getUserInfor",
-  async (payload: number, { rejectWithValue }) => {
+  async (id: number, { rejectWithValue }) => {
     try {
-      const res = await quanLyAuthService.getUserInfor(payload);
+      const res = await quanLyAuthService.getUserInfor(id);
       return res.data.content;
     } catch (error) {
       rejectWithValue(error);
+    }
+  }
+)
+
+export const getListUser = createAsyncThunk(
+  "quanLyCongViec/getListUser",
+  async (payload: QueryDividePage, { rejectWithValue }) => {
+    try {
+      const { pageIndex,pageSize, keyword } = payload
+      let query = `pageIndex=${pageIndex}&pageSize=${pageSize}`;
+      if(keyword){
+        query = `pageIndex=${pageIndex}&pageSize=${pageSize}&keywords=${keyword}`
+      }
+      const res = await quanLyAuthService.getUserWithPage(query)
+      return res.data.content
+    } catch (error) {
+      rejectWithValue(error)
     }
   }
 );
@@ -54,8 +73,9 @@ export const uploadAvatar = createAsyncThunk(
   "quanLyAuth/uploadAvatar",
   async (payload: FormData, { rejectWithValue }) => {
     try {
-      const res = await quanLyAuthService.uploadAvatar(payload);
-      return res.data.content;
+      console.log(payload)
+      // const res = await quanLyAuthService.uploadAvatar(payload);
+      // return res.data.content;
     } catch (error) {
       rejectWithValue(error);
     }
