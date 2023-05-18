@@ -1,6 +1,6 @@
 export type GetHttpResponse<T> = {
   statusCode: number;
-  message?: string; 
+  message?: string;
   content: T;
   dateTime: Date;
 };
@@ -35,6 +35,7 @@ export type GetAuthResponse = {
   password: string;
   phone: string;
   birthday: string;
+  avatar?: string;
   gender: boolean;
   role: string;
   skill: string[];
@@ -76,4 +77,21 @@ export type ThueCongViecResponse = {
   maNguoiThue: number;
   ngayThue: string;
   hoanThanh: boolean;
+};
+
+export type BinhLuanResponse = {
+  ngayBinhLuan: string;
+  noiDung: string;
+  saoBinhLuan: number;
+  tenNguoiBinhLuan: string;
+  avatar: string;
+};
+
+export type AddBinhLuanResponse = {
+  id?: number;
+  maCongViec: number;
+  maNguoiBinhLuan: number;
+  ngayBinhLuan: string;
+  noiDung: string;
+  saoBinhLuan: number;
 };

@@ -1,23 +1,42 @@
-import React, {useEffect, useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "../store";
+import { RootState, useAppDispatch } from "../store";
 import UserInfor from "./UserInfor";
 import clsx from "clsx";
+import { uploadAvatar } from "../store/quanLyAuth/thunkAction";
 
 type Props = {};
 
 const Profile = (props: Props) => {
   const { auth } = useSelector((state: RootState) => state.quanLyAuth);
   const [showUserInfor, setShowUserInfor] = useState(false);
-  useEffect(()=>{
-  },[auth?.user])
-
+  const dispatch = useAppDispatch();
+  // const [imgSrc, setImgSrc] = useState("");
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    try {
+      if (e.target.files) {
+        let file = e.target.files[0];
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (e) => {
+          // setImgSrc(e.target?.result as string);
+          dispatch(uploadAvatar(e.target?.result as string));
+        };
+      }
+    } catch (error) {
+      alert("Upload avatar failed");
+    }
+  };
+  // useEffect(() => {
+  //   dispatch(uploadAvatar(imgSrc));
+  // }, [dispatch, imgSrc]);
   if (auth !== undefined) {
     return (
       <div className="profile">
         <div className="profile-content">
           <div className="content-top">
-            <input type="file" name="profile[image]" />
+            <img src={auth.user.avatar} alt="" className="" />
+            <input type="file" name="profile[image]" onChange={handleChange} />
             <div className="flex gap-6">
               <p>
                 <i className="fa-regular fa-user"></i> {auth.user.name}
