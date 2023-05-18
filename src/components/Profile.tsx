@@ -16,15 +16,12 @@ const Profile = (props: Props) => {
     try {
       if (e.target.files) {
         let file = e.target.files[0];
-        let reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = (e) => {
-          // setImgSrc(e.target?.result as string);
-          dispatch(uploadAvatar(e.target?.result as string));
-        };
+        let formData = new FormData();
+        formData.append("formFile", file);
+        dispatch(uploadAvatar(formData));
       }
     } catch (error) {
-      alert("Upload avatar failed");
+      
     }
   };
   // useEffect(() => {
