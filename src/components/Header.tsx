@@ -4,31 +4,17 @@ import { useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { RootState, useAppDispatch } from "../store";
 import { quanLyAuthActions } from "../store/quanLyAuth/slice";
-import { MenuTypeWork } from "../react-app-env";
-import WorkNav from "./WorkNav";
 import { getMenuTypeWork } from "../store/quanLyCongViec/thunkAction";
+import SliderMenu from "./SliderMenu";
 
 const Header = () => {
   const { auth } = useSelector((state: RootState) => state.quanLyAuth);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { menuLoaiCongViec } = useSelector(
-    (state: RootState) => state.quanLyCongViec
-  );
 
   useEffect(() => {
     dispatch(getMenuTypeWork());
   }, [dispatch]);
-
-  const renderNavWork = () => {
-    return menuLoaiCongViec?.map((item: MenuTypeWork, index: number) => {
-      return (
-        <NavLink to={`category/${item.id}`} key={index}>
-          <WorkNav id={item.id} title={item.tenLoaiCongViec} listGroupType={item.dsNhomChiTietLoai}/>
-        </NavLink>
-      );
-    });
-  };
 
   return (
     <header>
@@ -103,7 +89,7 @@ const Header = () => {
           </ul>
         </div>
       </div>
-      <div className="bottom">{renderNavWork()}</div>
+      <SliderMenu />
     </header>
   );
 };

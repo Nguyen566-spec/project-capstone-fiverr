@@ -1,37 +1,40 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../store";
-import { GroupDetailTypeWork } from "../react-app-env";
-import { getDetailTypeWork } from "../store/quanLyCongViec/thunkAction";
-import ServiceItem from "./ServiceItem";
+import { useSelector } from "react-redux";
+import { getMenuTypeWork } from "../store/quanLyCongViec/thunkAction";
+import { MenuTypeWork } from "../react-app-env";
 import { NavLink } from "react-router-dom";
+import WorkNav from "./WorkNav";
 
 type Props = {};
 
-const SliderService = (props: Props) => {
+const SliderMenu = (props: Props) => {
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(getDetailTypeWork());
+    dispatch(getMenuTypeWork());
   }, [dispatch]);
 
-  const { chiTietLoaiCongViec } = useSelector(
+  const { menuLoaiCongViec } = useSelector(
     (state: RootState) => state.quanLyCongViec
   );
+
   const [currentSlide, setCurrentSlide] = useState({
     startSlide: 0,
-    endSlide: 4,
+    endSlide: 7,
   });
 
   const nextSlide = () => {
-    if (chiTietLoaiCongViec !== undefined) {
+    if (menuLoaiCongViec !== undefined) {
       let newStart =
-        currentSlide.startSlide < chiTietLoaiCongViec?.length - 4
+        currentSlide.startSlide < menuLoaiCongViec?.length - 7
           ? currentSlide.endSlide + 1
           : 0;
+
       let newEnd =
-        currentSlide.endSlide < chiTietLoaiCongViec?.length - 1
+        currentSlide.endSlide < menuLoaiCongViec?.length - 1
           ? currentSlide.endSlide + 5
-          : 4;
+          : 7;
+
       setCurrentSlide({
         startSlide: newStart,
         endSlide: newEnd,
@@ -40,18 +43,19 @@ const SliderService = (props: Props) => {
   };
 
   const prevSlide = () => {
-    if (chiTietLoaiCongViec !== undefined) {
-      const modSlide = chiTietLoaiCongViec?.length % 5;
+    if (menuLoaiCongViec !== undefined) {
+      const modSlide = menuLoaiCongViec?.length % 7;
 
       let newStart =
-        currentSlide.startSlide > 4
+        currentSlide.startSlide > 7
           ? currentSlide.startSlide - 5
-          : chiTietLoaiCongViec.length + modSlide - 4;
+          : menuLoaiCongViec.length + modSlide - 7;
 
       let newEnd =
-        currentSlide.endSlide > 4
+        currentSlide.endSlide > 7
           ? currentSlide.endSlide - 5
-          : chiTietLoaiCongViec.length + modSlide;
+          : menuLoaiCongViec.length + modSlide;
+
 
       setCurrentSlide({
         startSlide: newStart,
@@ -60,38 +64,31 @@ const SliderService = (props: Props) => {
     }
   };
   const renderCardList = () => {
-    return chiTietLoaiCongViec?.map(
-      (item: GroupDetailTypeWork, index: number) => {
-        const codition =
-          index <= currentSlide.endSlide && index >= currentSlide.startSlide;
-        const classSide = codition ? "duration-700 ease-in-out" : "hidden";
-        const activeSlide = codition ? "active" : "";
-        return (
-          <NavLink to={`category/${item.maLoaiCongviec}`}>
-            <ServiceItem
-              classSlide={classSide}
-              activeSlide={activeSlide}
-              index={index}
-              img={item.hinhAnh}
-              title={item.tenNhom}
-              codeType={item.maLoaiCongviec}
-              key={index}
-            />
-          </NavLink>
-        );
-      }
-    );
+    return menuLoaiCongViec?.map((item: MenuTypeWork, index: number) => {
+      const codition =
+        index <= currentSlide.endSlide && index >= currentSlide.startSlide;
+      const classSide = codition ? "duration-700 ease-in-out active" : "hidden";
+      return (
+        <NavLink to={`category/${item.id}`} key={index} className={classSide}
+        >
+          <WorkNav
+            id={item.id}
+            title={item.tenLoaiCongViec}
+            listGroupType={item.dsNhomChiTietLoai}
+          />
+        </NavLink>
+      );
+    });
   };
-
   return (
-    <div>
-      <div className="relative w-full slide-service" data-carousel="slide">
+    <div className="bottom relative">
+      <div className="absolute w-full top-0 left-0" data-carousel="slide">
         {/* Carousel wrapper */}
-        <div className="wapper">{renderCardList()}</div>
+        <div className="w-[95%] mx-auto wapper grid grid-cols-8">{renderCardList()}</div>
         {/* Slider controls */}
         <button
           type="button"
-          className="btn-slide left"
+          className="btn-slide left none-left"
           data-carousel-prev
           onClick={() => {
             prevSlide();
@@ -103,7 +100,7 @@ const SliderService = (props: Props) => {
               className="w-6 h-6 text-white dark:text-gray-800"
               fill="none"
               stroke="currentColor"
-              viewBox="0 0 24 24"
+              viewBox="0 0 27 27"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
@@ -118,7 +115,7 @@ const SliderService = (props: Props) => {
         </button>
         <button
           type="button"
-          className="btn-slide right"
+          className="btn-slide right none-right"
           data-carousel-next
           onClick={() => {
             nextSlide();
@@ -130,7 +127,7 @@ const SliderService = (props: Props) => {
               className="w-6 h-6 text-white dark:text-gray-800"
               fill="none"
               stroke="currentColor"
-              viewBox="0 0 24 24"
+              viewBox="0 0 27 27"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
@@ -148,4 +145,4 @@ const SliderService = (props: Props) => {
   );
 };
 
-export default SliderService;
+export default SliderMenu;

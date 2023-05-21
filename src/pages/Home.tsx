@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Carousel from "../components/Carousel";
 import Introduction from "../components/Introduction";
 import Wegot from "../components/Wegot";
@@ -8,6 +8,10 @@ import SliderService from "../components/SliderService";
 // import CongViecList from "../module/CongViecList";
 
 const Home = () => {
+  useEffect(()=>{
+    window.scrollTo(0,0)
+  },[])
+
   return (
     <div>
       <Carousel />

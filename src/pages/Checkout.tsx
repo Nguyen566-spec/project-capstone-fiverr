@@ -27,6 +27,9 @@ const Checkout = () => {
       hoanThanh: false,
     },
   });
+  useEffect(()=>{
+    window.scrollTo(0,0)
+  },[])
   if (!auth) {
     return <Navigate to="/login" />;
   }

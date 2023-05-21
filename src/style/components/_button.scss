@@ -21,9 +21,15 @@
   @apply absolute top-[50%] z-30 flex items-center justify-center px-4 cursor-pointer rounded-[50%] bg-color-white w-[40px] h-[40px] leading-[40px] shadow-color-gray-light-2 shadow-lg;
   &.left {
     @apply left-[2%];
+    &.none-left {
+      @apply left-0 top-[20%] w-[25px] h-[25px] leading-[25px] p-0;
+    }
   }
   &.right {
-    @apply right-[2%]
+    @apply right-[2%];
+    &.none-right {
+      @apply right-[6%] top-[20%] w-[25px] h-[25px] leading-[25px] p-0;
+    }
   }
 }
 

@@ -76,8 +76,14 @@ body {
 .btn-slide.left {
   @apply left-[2%];
 }
+.btn-slide.left.none-left {
+  @apply left-0 top-[20%] w-[25px] h-[25px] leading-[25px] p-0;
+}
 .btn-slide.right {
   @apply right-[2%];
+}
+.btn-slide.right.none-right {
+  @apply right-[6%] top-[20%] w-[25px] h-[25px] leading-[25px] p-0;
 }
 
 .btn-join {
@@ -130,7 +136,7 @@ header .top ul li.dif {
   @apply text-color-puple hover:text-color-green-light cursor-pointer;
 }
 header .bottom {
-  @apply h-[30px] border-t-[1px] border-t-color-white-light grid grid-cols-9 items-center;
+  @apply h-[30px] border-t-[1px] border-t-color-white-light;
 }
 
 footer {

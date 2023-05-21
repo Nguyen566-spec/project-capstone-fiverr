@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../store";
 import { useForm } from "react-hook-form";
@@ -9,6 +9,9 @@ import { NavLink, Navigate } from "react-router-dom";
 const Login = () => {
   const { auth } = useSelector((state: RootState) => state.quanLyAuth);
   const dispatch = useAppDispatch();
+  useEffect(()=>{
+    window.scrollTo(0,0)
+  },[])
   const {
     register,
     handleSubmit,

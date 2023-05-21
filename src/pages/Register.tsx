@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { GetAuthResponse } from "../react-app-env";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -6,6 +6,9 @@ import { quanLyAuthService } from "../services/quanLyAuth.service";
 
 const Register = () => {
   const navigate = useNavigate();
+  useEffect(()=>{
+    window.scrollTo(0,0)
+  },[])
   const {
     register,
     handleSubmit,
