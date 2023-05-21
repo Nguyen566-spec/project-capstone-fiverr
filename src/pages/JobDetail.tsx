@@ -37,6 +37,11 @@ const JobDetail = () => {
       saoBinhLuan: 0,
     },
   });
+
+  useEffect(()=>{
+    window.scrollTo(0,0)
+  },[])
+  
   return (
     <div className="container mx-auto pt-40">
       <div className="flex flex-col space-y-8 lg:flex-row lg:justify-between">

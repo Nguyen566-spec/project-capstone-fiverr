@@ -24,6 +24,9 @@ const CategoryDetail = () => {
     dispatch(getDetailTypeWork());
   }, [dispatch, id]);
   const { Panel } = Collapse;
+  useEffect(()=>{
+    window.scrollTo(0,0)
+  },[])
   return (
     <div className="container mx-auto pt-48">
       <div className="w-full h-48 bg-color-green-dark leading-[192px] text-color-white text-center rounded-lg">
