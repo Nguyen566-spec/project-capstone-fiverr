@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 
 type Props = {
-  onClick : ()=>void;
+  onClick ?: ()=>void;
   type?: "submit" | "button";
   className ?: string;
   nameBtn ?: string;

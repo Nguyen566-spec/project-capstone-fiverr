@@ -52,7 +52,7 @@ const Footer = () => {
   };
   return (
     <footer>
-      <div className="footer-link line-top">
+      <div className="footer-link line-top container">
         <div className="item-link">
           {/* Products section */}
           {renderFooterNav()}

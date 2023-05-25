@@ -37,7 +37,7 @@ const Header = () => {
             </svg>
           </NavLink>
         </div>
-        <div>
+        <div className="search">
           <FormSearch
             placeholder="What service are you looking for today?"
             classBtn="btn-search"

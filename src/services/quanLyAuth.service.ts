@@ -26,4 +26,7 @@ export const quanLyAuthService = {
   uploadAvatar: (payload: FormData) =>
     http.post<GetHttpResponse<GetAuthResponse>>("users/upload-avatar", payload),
   layDanhSachUser: () => http.get<GetHttpResponse<GetAuthResponse[]>>("users"),
+  deleteUser : (id:number) => http.delete(`users?id=${id}`),
+  postUser : (payload: FieldValues) =>
+  http.post<GetHttpResponse<GetAuthResponse>>("users/", payload),
 };
