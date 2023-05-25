@@ -8,9 +8,9 @@ import SliderService from "../components/SliderService";
 // import CongViecList from "../module/CongViecList";
 
 const Home = () => {
-  useEffect(()=>{
-    window.scrollTo(0,0)
-  },[])
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div>
@@ -44,10 +44,6 @@ const Home = () => {
       <Introduction />
       <Wegot />
       <FiverrBusiness />
-      {/* <h1 className="text-center font-bold text-4xl p-4">
-        Danh sách công việc
-      </h1>
-      <CongViecList /> */}
       <SliderMember />
     </div>
   );

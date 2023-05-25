@@ -1,5 +1,5 @@
 .carousel {
-  @apply bg-carousel1 h-[700px] w-[100vw] bg-no-repeat relative z-0 bg-center bg-cover;
+  @apply bg-carousel1 h-[700px] bg-no-repeat relative z-0 bg-center bg-cover w-[100%];
   .carousel-content {
     @apply absolute top-[30%] left-[5%] text-color-white w-[50%] ;
     h2 {

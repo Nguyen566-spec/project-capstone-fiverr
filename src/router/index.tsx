@@ -15,7 +15,6 @@ import ManageWork from "../components/admin/ManageWork";
 import ManageService from "../components/admin/ManageService";
 import ManageUser from "../components/admin/ManageUser";
 import ManageTypeWork from "../components/admin/ManageTypeWork";
-import Dasboard from "../pages/Dasboard";
 import Checkout from "../pages/Checkout";
 import Success from "../pages/Success";
 
@@ -76,10 +75,6 @@ const Router = () => {
       element: <AdminLayout />,
       children: [
         {
-          path : "",
-          element : <Dasboard />
-        },
-        {
           path: "manage-work",
           element: <ManageWork />,
         },
@@ -88,7 +83,7 @@ const Router = () => {
           element: <ManageService />,
         },
         {
-          path: "manage-user",
+          path: "",
           element: <ManageUser />,
         },
         {

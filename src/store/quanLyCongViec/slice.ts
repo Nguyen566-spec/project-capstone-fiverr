@@ -8,6 +8,8 @@ import {
   detailTypeWork,
   detailDetailTypeWork,
   getHireWork,
+  getWork,
+  getTypeWorkWithPage,
 } from "./thunkAction";
 import {
   GetCongViecResponse,
@@ -28,6 +30,8 @@ type InitialState = {
   listHireWork?: ThueCongViecResponse[];
   keywords?: string | null;
   totalRow?: number;
+  listWorkWithPage?: GetCongViecResponse[];
+  listTypeWorkWithPage?: GetTypeWorkResponse[];
 };
 
 const initialState: InitialState = {
@@ -40,6 +44,9 @@ const initialState: InitialState = {
   typeWork: undefined,
   listHireWork: [],
   keywords: null,
+  listWorkWithPage: [],
+  totalRow: 0,
+  listTypeWorkWithPage : []
 };
 
 export const {
@@ -75,9 +82,20 @@ export const {
       .addCase(getHireWork.fulfilled, (state, action) => {
         if (action.payload) {
           state.listHireWork = action.payload.data;
-          state.keywords = action.payload.keywords;
           state.totalRow = action.payload.totalRow;
         }
-      });
+      })
+      .addCase(getWork.fulfilled, (state, action) => {
+        if (action.payload) {
+          state.listWorkWithPage = action.payload.data;
+          state.totalRow = action.payload.totalRow
+        }
+      })
+      .addCase(getTypeWorkWithPage.fulfilled, (state, action) => {
+        if (action.payload) {
+          state.listTypeWorkWithPage = action.payload.data;
+          state.totalRow = action.payload.totalRow
+        }
+      })
   },
 });

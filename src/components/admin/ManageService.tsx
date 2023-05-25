@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { TrashIcon } from "./icons/trash";
 import { PencilIcon } from "./icons/pencil";
 import { CreateItem } from "./button/CreateItem";
-import InputSearch from "./input/InputSearch";
 import { RootState, useAppDispatch } from "../../store";
 import { getHireWork } from "../../store/quanLyCongViec/thunkAction";
 import {
@@ -18,6 +17,7 @@ import { quanLyCongViecService } from "../../services/quanLyCongViec.service";
 import { SaveIcon } from "./icons/save";
 import clsx from "clsx";
 import Toggle from "./toggle/toggle";
+import Pagination from "./pagination/Pagination";
 
 type Props = {};
 
@@ -117,7 +117,7 @@ const ManageService = (props: Props) => {
           <td className="whitespace-nowrap px-6 py-4">
             <Toggle
               check={item.hoanThanh}
-              onChange={() => item.id ? handleOnchange(item.id) : ""}
+              onChange={() => (item.id ? handleOnchange(item.id) : "")}
             />
           </td>
           <td className="whitespace-nowrap px-6 py-4 flex gap-2">
@@ -157,7 +157,7 @@ const ManageService = (props: Props) => {
   const handlerSubmit = (isNext: boolean = true) => {
     if (totalRow) {
       const totalIndex = Math.floor(totalRow / pageSize);
-      const conditionNext = pageIndex <= totalIndex && pageIndex >= 1 && listHireWork?.length !== undefined ? listHireWork.length > 0 : false;
+      const conditionNext = pageIndex <= totalIndex && pageIndex >= 1;
       const conditionPre = pageIndex > 1 && pageIndex <= totalIndex + 1;
       if (isNext && conditionNext) {
         setPageIndex(pageIndex + 1);
@@ -168,6 +168,10 @@ const ManageService = (props: Props) => {
         setTerm(term - 10);
       }
     }
+  };
+  const handlerSetPageIndex = (index: number) => {
+    setPageIndex(index);
+    setTerm(pageSize * (index - 1));
   };
 
   return (
@@ -184,7 +188,6 @@ const ManageService = (props: Props) => {
               setIsUpdate(false);
             }}
           />
-          <InputSearch name="search" placeholder="Search.." type="text" />
         </div>
         <div className="table-manage">
           <div className="flex flex-col">
@@ -221,43 +224,14 @@ const ManageService = (props: Props) => {
             </div>
           </div>
         </div>
-        <div className="pagination">
-          <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
-            <div className="flex flex-1 justify-between">
-              <div className="sm:flex sm:flex-1 sm:items-center sm:justify-between">
-                <div>
-                  <p className="text-sm text-gray-700 flex flex-wrap flex-row gap-2">
-                    Showing
-                    <span className="font-medium">{1 + term}</span>
-                    to
-                    <span className="font-medium">
-                      {totalRow
-                        ? term + 10 <= totalRow
-                          ? 10 + term
-                          : totalRow
-                        : ""}
-                    </span>
-                    of
-                    <span className="font-medium">{totalRow}</span>
-                    results
-                  </p>
-                </div>
-              </div>
-              <button
-                onClick={() => handlerSubmit(false)}
-                className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-              >
-                Previous
-              </button>
-              <button
-                onClick={() => handlerSubmit(true)}
-                className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-              >
-                Next
-              </button>
-            </div>
-          </div>
-        </div>
+        <Pagination
+          handlerSetPageIndex={handlerSetPageIndex}
+          handlerSubmit={handlerSubmit}
+          pageSize={pageSize}
+          totalRow={totalRow}
+          pageIndex={pageIndex}
+          term={term}
+        />
         <div
           className={clsx(
             "tab-detail absolute top-0 left-[10%] w-[80%] bg-color-black p-10 rounded- z-[9]",
@@ -266,16 +240,6 @@ const ManageService = (props: Props) => {
             }
           )}
         >
-          <button
-            className="border px-3 rounded-lg absolute top-[20px] right-[20px] text-font-20"
-            onClick={() => {
-              setShowTabDetail(false);
-              setShowForm(false);
-              setDetaiJob(null);
-            }}
-          >
-            X
-          </button>
           <table
             className={clsx("text-center table m-[20px]", {
               hidden: detailJob === null,
@@ -313,6 +277,20 @@ const ManageService = (props: Props) => {
             </tbody>
           </table>
           <div
+            className={clsx(
+              "close absolute top-[20px] right-[20px] rounded-md px-2 border cursor-pointer",
+              {
+                hidden: detailJob === null,
+              }
+            )}
+            onClick={() => {
+              setDetaiJob(null);
+              setShowTabDetail(!showTabDetail);
+            }}
+          >
+            <span>X</span>
+          </div>
+          <div
             className={clsx("edit-detail", {
               hidden: !showForm,
             })}
@@ -342,7 +320,7 @@ const ManageService = (props: Props) => {
                 type="text"
                 disabled={false}
               />
-              <div className="mt-6">
+              <div className="mt-6 flex gap-4">
                 <CreateItem
                   className="btn-create"
                   onClick={() => {
@@ -353,6 +331,18 @@ const ManageService = (props: Props) => {
                   {" "}
                   <SaveIcon />
                 </CreateItem>
+                <span
+                  className="border text-font-20 btn-create"
+                  onClick={() => {
+                    setShowTabDetail(false);
+                    setShowForm(false);
+                    setDetaiJob(null);
+                  }}
+                >
+                  <span className="text-color-red opacity-[0.7] font-semibold">
+                    X
+                  </span>
+                </span>
               </div>
             </form>
           </div>

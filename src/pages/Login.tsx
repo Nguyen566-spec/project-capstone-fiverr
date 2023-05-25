@@ -18,7 +18,12 @@ const Login = () => {
     formState: { errors },
   } = useForm<GetAuthResponse>();
   if (auth) {
-    return <Navigate to="/" />;
+    const role = auth.user.role.toLocaleLowerCase()
+    if( role === "user"){
+      return <Navigate to="/" />;
+
+    }
+    return <Navigate to="/admin" />;
   }
   return (
     <div className="container mx-auto">

@@ -117,3 +117,4 @@ export type AddBinhLuanResponse = {
   noiDung: string;
   saoBinhLuan: number;
 };
+
