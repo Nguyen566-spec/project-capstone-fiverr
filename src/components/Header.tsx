@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import FormSearch from "./core/FormSearch";
 import { useSelector } from "react-redux";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, Navigate, useNavigate } from "react-router-dom";
 import { RootState, useAppDispatch } from "../store";
 import { quanLyAuthActions } from "../store/quanLyAuth/slice";
 import { getMenuTypeWork } from "../store/quanLyCongViec/thunkAction";
@@ -15,6 +15,24 @@ const Header = () => {
   useEffect(() => {
     dispatch(getMenuTypeWork());
   }, [dispatch]);
+
+  const renderNavWork = () => {
+    return menuLoaiCongViec?.map((item: MenuTypeWork, index: number) => {
+      return (
+        <NavLink to={`category/${item.id}`} key={index}>
+          <WorkNav
+            id={item.id}
+            title={item.tenLoaiCongViec}
+            listGroupType={item.dsNhomChiTietLoai}
+          />
+        </NavLink>
+      );
+    });
+  };
+
+  if (auth?.user.role === "ADMIN") {
+    return <Navigate to="/admin" />;
+  }
 
   return (
     <header>
