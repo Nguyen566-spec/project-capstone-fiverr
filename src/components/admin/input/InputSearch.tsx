@@ -1,4 +1,4 @@
-import React from "react";
+import React, { RefObject } from "react";
 
 type Props = {
   name: string;
@@ -8,9 +8,10 @@ type Props = {
   onChangeText?(value: string): void;
   autoFocus?: boolean;
   value?: any;
+  ref?: RefObject<HTMLInputElement>;
 };
 
-const InputSearch = (props: Props) => {
+const InputSearch = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
   return (
     <input
       placeholder={props.placeholder ?? props.label}
@@ -20,11 +21,12 @@ const InputSearch = (props: Props) => {
       autoComplete="off"
       autoFocus={props.autoFocus}
       value={props.value}
+      ref={ref}
       {...(!!props.onChangeText && {
         onChange: (event) => props.onChangeText?.(event?.target?.value),
       })}
     />
   );
-};
+});
 
 export default InputSearch;

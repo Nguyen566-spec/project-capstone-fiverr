@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../store";
 import { useForm } from "react-hook-form";
@@ -9,13 +9,21 @@ import { NavLink, Navigate } from "react-router-dom";
 const Login = () => {
   const { auth } = useSelector((state: RootState) => state.quanLyAuth);
   const dispatch = useAppDispatch();
+  useEffect(()=>{
+    window.scrollTo(0,0)
+  },[])
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<GetAuthResponse>();
   if (auth) {
-    return <Navigate to="/" />;
+    const role = auth.user.role.toLocaleLowerCase()
+    if( role === "user"){
+      return <Navigate to="/" />;
+
+    }
+    return <Navigate to="/admin" />;
   }
   return (
     <div className="container mx-auto">

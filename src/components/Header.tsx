@@ -4,17 +4,13 @@ import { useSelector } from "react-redux";
 import { NavLink, Navigate, useNavigate } from "react-router-dom";
 import { RootState, useAppDispatch } from "../store";
 import { quanLyAuthActions } from "../store/quanLyAuth/slice";
-import { MenuTypeWork } from "../react-app-env";
-import WorkNav from "./WorkNav";
 import { getMenuTypeWork } from "../store/quanLyCongViec/thunkAction";
+import SliderMenu from "./SliderMenu";
 
 const Header = () => {
   const { auth } = useSelector((state: RootState) => state.quanLyAuth);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { menuLoaiCongViec } = useSelector(
-    (state: RootState) => state.quanLyCongViec
-  );
 
   useEffect(() => {
     dispatch(getMenuTypeWork());
@@ -59,7 +55,7 @@ const Header = () => {
             </svg>
           </NavLink>
         </div>
-        <div>
+        <div className="search">
           <FormSearch
             placeholder="What service are you looking for today?"
             classBtn="btn-search"
@@ -111,7 +107,7 @@ const Header = () => {
           </ul>
         </div>
       </div>
-      <div className="bottom">{renderNavWork()}</div>
+      <SliderMenu />
     </header>
   );
 };

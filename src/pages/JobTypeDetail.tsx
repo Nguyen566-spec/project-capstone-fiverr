@@ -14,6 +14,11 @@ const JobTypeDetail = () => {
   useEffect(() => {
     dispatch(layDanhSachCongViec());
   }, [dispatch]);
+
+  useEffect(()=>{
+    window.scrollTo(0,0)
+  },[])
+  
   return (
     <div className="container mx-auto pt-40">
       <h1 className="text-font-32 font-bold mb-8">Job list</h1>

@@ -47,7 +47,7 @@ export const getListUser = createAsyncThunk(
       const { pageIndex,pageSize, keyword } = payload
       let query = `pageIndex=${pageIndex}&pageSize=${pageSize}`;
       if(keyword){
-        query = `pageIndex=${pageIndex}&pageSize=${pageSize}&keywords=${keyword}`
+        query = `pageIndex=${pageIndex}&pageSize=${pageSize}&keyword=${keyword}`
       }
       const res = await quanLyAuthService.getUserWithPage(query)
       return res.data.content

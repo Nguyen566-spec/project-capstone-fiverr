@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { CreateItem } from "./button/CreateItem";
 import InputSearch from "./input/InputSearch";
 import { TrashIcon } from "./icons/trash";
-import { PencilIcon } from "./icons/pencil";
 import { RootState, useAppDispatch } from "../../store";
 import { useSelector } from "react-redux";
 import { GetAuthResponse, QueryDividePage } from "../../react-app-env";
@@ -12,6 +11,9 @@ import { quanLyAuthService } from "../../services/quanLyAuth.service";
 import clsx from "clsx";
 import InputForm from "../core/InputForm";
 import { SaveIcon } from "./icons/save";
+import { Checkbox } from "antd";
+import { CheckboxChangeEvent } from "antd/es/checkbox";
+import Pagination from "./pagination/Pagination";
 
 type Props = {};
 
@@ -21,25 +23,22 @@ const ManageUser = (props: Props) => {
     (state: RootState) => state.quanLyAuth
   );
   const [pageIndex, setPageIndex] = useState(1);
-  const [pageSize] = useState(10);
+  const [pageSize] = useState(20);
   const [term, setTerm] = useState(0);
   const [viewDetail, setViewDetail] = useState<GetAuthResponse>();
   const [showForm, setShowForm] = useState(false);
   const [showTabDetail, setShowTabDetail] = useState(false);
+  const [keyword, setKeyword] = useState("");
 
-  const handlerView = async (id: number) => {
-    const res = await quanLyAuthService.getUserInfor(id);
-    setViewDetail(res.data.content);
-  };
-
+  let inputRef = useRef<HTMLInputElement>(null);
   useEffect(() => {
     const payload: QueryDividePage = {
       pageIndex,
       pageSize,
+      keyword,
     };
     dispatch(getListUser(payload));
-  }, [dispatch, pageIndex, pageSize]);
-  console.log(listUser);
+  }, [dispatch, pageIndex, pageSize, keyword]);
 
   const { register, handleSubmit, setValue, reset } = useForm({
     mode: "onChange",
@@ -55,8 +54,8 @@ const ManageUser = (props: Props) => {
         setValue("birthday", res?.birthday || "");
         setValue("gender", res?.gender || "");
         setValue("email", res?.email || "");
-        setValue("password", "");
-        setValue("role", res?.role || "");
+        setValue("password", res?.password);
+        setValue("role", "ADMIN");
         setValue("skill", []);
         setValue("certification", []);
       } catch (error) {
@@ -67,13 +66,48 @@ const ManageUser = (props: Props) => {
   }, [viewDetail, setValue]);
 
   const onSubmit = async (user: any) => {
-    if (user.id) {
-      const res = await quanLyAuthService.updateUser(user.id, user);
-      dispatch(getListUser({ pageIndex, pageSize }));
-      setViewDetail(res.data.content);
-      setShowTabDetail(!showTabDetail);
-      setShowForm(!showForm);
+    try {
+      const res = await quanLyAuthService.postUser(user);
+      if (res.data.statusCode !== 400) {
+        alert("Sign up success");
+        const listUser = await quanLyAuthService.layDanhSachUser();
+        let getUser = listUser.data.content.filter(
+          (value: GetAuthResponse) => value.email === res.data.content.email
+        );
+        let value = getUser[0];
+        value.role = "ADMIN";
+        const updateStt = await quanLyAuthService.updateUser(value.id, value);
+        if (totalRow) {
+          setPageIndex(Math.floor(totalRow / pageSize) + 1);
+          setTerm(Math.floor(totalRow / pageSize) * pageSize);
+        }
+        dispatch(getListUser({ pageIndex, pageSize, keyword }));
+        setViewDetail(updateStt.data.content);
+        setShowTabDetail(!showTabDetail);
+        setShowForm(!showForm);
+      }
+    } catch (error) {
+      alert("Account is existed");
     }
+  };
+  const handlerSubmit = (isNext: boolean = true) => {
+    if (totalRow) {
+      const totalIndex = Math.floor(totalRow / pageSize);
+      const conditionNext = pageIndex <= totalIndex && pageIndex >= 1;
+      const conditionPre = pageIndex > 1 && pageIndex <= totalIndex + 1;
+      if (isNext && conditionNext) {
+        setPageIndex(pageIndex + 1);
+        setTerm(term + pageSize);
+      }
+      if (isNext === false && conditionPre) {
+        setPageIndex(pageIndex - 1);
+        setTerm(term - pageSize);
+      }
+    }
+  };
+  const handlerSetPageIndex = (index: number) => {
+    setPageIndex(index);
+    setTerm(pageSize * (index - 1));
   };
 
   const renderListUser = () => {
@@ -84,30 +118,23 @@ const ManageUser = (props: Props) => {
           <td className="whitespace-nowrap px-6 py-4">{item.name}</td>
           <td className="whitespace-nowrap px-6 py-4">{item.phone}</td>
           <td className="whitespace-nowrap px-6 py-4">{item.email}</td>
-          <td className="whitespace-nowrap px-6 py-4">{item.password}</td>
           <td className="whitespace-nowrap px-6 py-4">{item.birthday}</td>
           <td className="whitespace-nowrap px-6 py-4">
             {item.gender ? "Female" : "Male"}
           </td>
           <td className="whitespace-nowrap px-6 py-4">{item.role}</td>
-          <td className="whitespace-nowrap px-6 py-4">{item.skill}</td>
-          <td className="whitespace-nowrap px-6 py-4">{item.certification}</td>
           <td className="whitespace-nowrap px-6 py-4 flex gap-2">
-            <button
-              onClick={() => {
-                if (item.id) {
-                  handlerView(item.id);
-                  setShowTabDetail(!showTabDetail);
-                  setShowForm(!showForm);
+            
+            <button className={clsx({
+              hidden : item.role.toLocaleLowerCase() === "admin"
+            })}
+              onClick={async () => {
+                if (item.id && item.role.toLowerCase() !== "admin") {
+                  await quanLyAuthService.deleteUser(item.id);
+                  dispatch(getListUser({ pageIndex, pageSize, keyword }));
                 }
               }}
             >
-              <PencilIcon
-                className="w-[25px] h-[25px]"
-                fill="rgb(159, 159, 7)"
-              />
-            </button>
-            <button>
               <TrashIcon
                 className="w-[25px] h-[25px]"
                 fill="rgb(120, 12, 12)"
@@ -119,36 +146,40 @@ const ManageUser = (props: Props) => {
     });
   };
 
-  const handlerSubmit = (isNext: boolean = true) => {
-    if (totalRow) {
-      const totalIndex = Math.floor(totalRow / pageSize);
-      const conditionNext = pageIndex <= totalIndex && pageIndex >= 1;
-      const conditionPre = pageIndex > 1 && pageIndex <= totalIndex + 1;
-      if (isNext && conditionNext) {
-        setPageIndex(pageIndex + 1);
-        setTerm(term + 10);
-      }
-      if (isNext === false && conditionPre) {
-        setPageIndex(pageIndex - 1);
-        setTerm(term - 10);
-      }
-    }
-  };
-
   return (
     <div className="manage-service">
       <div className="content relative">
         <div className="group-btn">
           <CreateItem
             className="btn-create"
-            nameBtn="Create new service"
+            nameBtn="Create Admin"
             onClick={() => {
               setShowTabDetail(!showTabDetail);
               setShowForm(!showForm);
               reset();
             }}
           />
-          <InputSearch name="search" placeholder="Search.." type="text" />
+          <div className="flex">
+            <InputSearch
+              name="search"
+              placeholder="Search.."
+              type="text"
+              ref={inputRef}
+            />
+            <button
+              className="btn-create"
+              onClick={() => {
+                let newKeyword = inputRef.current?.value;
+                if (newKeyword) {
+                  setKeyword(newKeyword);
+                } else {
+                  setKeyword("");
+                }
+              }}
+            >
+              <i className="fa-solid fa-magnifying-glass" />
+            </button>
+          </div>
         </div>
         <div className="table-manage w-[100%] overflow-hidden">
           <div className="flex flex-col">
@@ -171,9 +202,6 @@ const ManageUser = (props: Props) => {
                           Email
                         </th>
                         <th scope="col" className="px-6 py-4">
-                          Password
-                        </th>
-                        <th scope="col" className="px-6 py-4">
                           Birthday
                         </th>
                         <th scope="col" className="px-6 py-4">
@@ -183,13 +211,7 @@ const ManageUser = (props: Props) => {
                           Role
                         </th>
                         <th scope="col" className="px-6 py-4">
-                          Kill
-                        </th>
-                        <th scope="col" className="px-6 py-4">
-                          Cer
-                        </th>
-                        <th scope="col" className="px-6 py-4">
-                          Button
+                          Action
                         </th>
                       </tr>
                     </thead>
@@ -200,43 +222,14 @@ const ManageUser = (props: Props) => {
             </div>
           </div>
         </div>
-        <div className="pagination">
-          <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
-            <div className="flex flex-1 justify-between">
-              <div className="sm:flex sm:flex-1 sm:items-center sm:justify-between">
-                <div>
-                  <p className="text-sm text-gray-700 flex flex-wrap flex-row gap-2">
-                    Showing
-                    <span className="font-medium">{1 + term}</span>
-                    to
-                    <span className="font-medium">
-                      {totalRow
-                        ? term + 10 <= totalRow
-                          ? 10 + term
-                          : totalRow
-                        : ""}
-                    </span>
-                    of
-                    <span className="font-medium">{totalRow}</span>
-                    results
-                  </p>
-                </div>
-              </div>
-              <button
-                onClick={() => handlerSubmit(false)}
-                className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-              >
-                Previous
-              </button>
-              <button
-                onClick={() => handlerSubmit(true)}
-                className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-              >
-                Next
-              </button>
-            </div>
-          </div>
-        </div>
+        <Pagination
+          handlerSetPageIndex={handlerSetPageIndex}
+          handlerSubmit={handlerSubmit}
+          pageSize={pageSize}
+          totalRow={totalRow}
+          pageIndex={pageIndex}
+          term={term}
+        />
         <div
           className={clsx(
             "tab-detail absolute top-0 left-[10%] w-[80%] bg-color-black p-10 rounded-lg",
@@ -245,15 +238,6 @@ const ManageUser = (props: Props) => {
             }
           )}
         >
-          <button
-            className="border px-3 rounded-lg absolute top-[20px] right-[20px] text-font-20"
-            onClick={() => {
-              setShowTabDetail(false);
-              setShowForm(false);
-            }}
-          >
-            X
-          </button>
           <div
             className={clsx("edit-detail", {
               hidden: !showForm,
@@ -266,12 +250,17 @@ const ManageUser = (props: Props) => {
                 type="text"
                 disabled={false}
               />
-              <InputForm
+              <Checkbox
+                className="my-3 text-sm font-semibold text-neutral-500 flex"
                 {...register("gender")}
-                label="Gender"
-                type="text"
                 disabled={false}
-              />
+                defaultChecked={false}
+                onChange={(e: CheckboxChangeEvent) =>
+                  setValue("gender", e.target.checked)
+                }
+              >
+                Gender
+              </Checkbox>
               <InputForm
                 {...register("phone", {
                   required: "Please enter content",
@@ -304,58 +293,29 @@ const ManageUser = (props: Props) => {
                 type="email"
                 disabled={false}
               />
-
               <InputForm
-                {...register("birthday", {
+                {...register("password", {
                   required: "Please enter content",
                 })}
-                label="Birthday"
-                type="text"
-                disabled={false}
-              />
-              <InputForm
-                {...register("role", {
-                  required: "Please enter content",
-                })}
-                label="Role"
-                type="text"
-                disabled={false}
-              />
-
-              <InputForm
-                {...register("password")}
                 label="Password"
                 type="password"
-                disabled={false}
               />
-
-              <InputForm
-                {...register("certification", {
-                  required: "Please enter content",
-                })}
-                label="Certification"
-                type="text"
-                disabled={false}
-              />
-              <InputForm
-                {...register("skill", {
-                  required: "Please enter content",
-                })}
-                label="Skill"
-                type="text"
-                disabled={false}
-              />
-              <div className="mt-6">
-                <CreateItem
-                  className="btn-create"
+              <div className="mt-6 flex gap-4">
+                <CreateItem className="btn-create">
+                  {" "}
+                  <SaveIcon />
+                </CreateItem>
+                <span
+                  className="border text-font-20 btn-create"
                   onClick={() => {
                     setShowTabDetail(false);
                     setShowForm(false);
                   }}
                 >
-                  {" "}
-                  <SaveIcon />
-                </CreateItem>
+                  <span className="text-color-red opacity-[0.7] font-semibold">
+                    X
+                  </span>
+                </span>
               </div>
             </form>
           </div>

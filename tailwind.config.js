@@ -40,6 +40,7 @@ module.exports = {
       "color-puple-dark": "#0d084d",
       "color-puple": " #1e1692",
       "color-puple-light": "#446ee7",
+      "color-red" : "red"
     },
     backgroundImage: {
       carousel1: "url(../assets/images/bg-hero-4-1792-x2.png)",
@@ -47,6 +48,13 @@ module.exports = {
       carousel3: "url(../assets/images/bg-signup-1400-x1.png)",
       btn_play: "url(https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/desktop-play-button.bab1740.png)",
     },
+    // screens: {
+    //   'mobile' : '300px',
+    //   'tablet': '640px',
+    //   'laptop': '1024px',
+    //   'desktop': '1280px',
+    // },
+    
   },
   plugins: [],
 };

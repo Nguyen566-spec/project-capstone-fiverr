@@ -18,5 +18,10 @@ export const quanLyCongViecService = {
   getDetailHireWork : (id:number) => http.get<GetHttpResponse<ThueCongViecResponse>>(`thue-cong-viec/${id}`),
   updateDetailHireWork : (id:number,cv:FieldValues) => http.put<GetHttpResponse<ThueCongViecResponse>>(`thue-cong-viec/${id}`,cv),
   deleteHireWork : (id:number) => http.delete(`thue-cong-viec/${id}`),
-  completedWork : (id:number) => http.post(`thue-cong-viec/hoan-thanh-cong-viec/${id}`) 
+  completedWork : (id:number) => http.post(`thue-cong-viec/hoan-thanh-cong-viec/${id}`),
+  getWorkWithPage : (query:string) => http.get<GetHttpResponse<ResponseByPage<GetCongViecResponse>>>(`cong-viec/phan-trang-tim-kiem?${query}`),
+  getTypeWorkWithPage : (query:string) => http.get<GetHttpResponse<ResponseByPage<GetTypeWorkResponse>>>(`loai-cong-viec/phan-trang-tim-kiem?${query}`),
+  deleteWork : (id:number)=> http.delete(`cong-viec/${id}`),
+  updateWork : (id:number,work:FieldValues) => http.put<GetHttpResponse<GetCongViecResponse>>(`cong-viec/${id}`,work),
+  addWork : (work:FieldValues) => http.post<GetHttpResponse<GetCongViecResponse>>(`cong-viec`,work)
 };

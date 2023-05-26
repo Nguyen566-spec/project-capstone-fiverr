@@ -93,9 +93,41 @@ export const getHireWork = createAsyncThunk(
       const { pageIndex,pageSize, keyword } = payload
       let query = `pageIndex=${pageIndex}&pageSize=${pageSize}`;
       if(keyword){
-        query = `pageIndex=${pageIndex}&pageSize=${pageSize}&keywords=${keyword}`
+        query = `pageIndex=${pageIndex}&pageSize=${pageSize}&keyword=${keyword}`
       }
       const res = await quanLyCongViecService.getHireWorkWithPage(query)
+      return res.data.content
+    } catch (error) {
+      rejectWithValue(error)
+    }
+  }
+);
+export const getWork = createAsyncThunk(
+  "quanLyCongViec/getWork",
+  async (payload: QueryDividePage, { rejectWithValue }) => {
+    try {
+      const { pageIndex,pageSize, keyword } = payload
+      let query = `pageIndex=${pageIndex}&pageSize=${pageSize}`;
+      if(keyword){
+        query = `pageIndex=${pageIndex}&pageSize=${pageSize}&keyword=${keyword}`
+      }
+      const res = await quanLyCongViecService.getWorkWithPage(query)
+      return res.data.content
+    } catch (error) {
+      rejectWithValue(error)
+    }
+  }
+);
+export const getTypeWorkWithPage = createAsyncThunk(
+  "quanLyCongViec/getTypeWorkWithPage",
+  async (payload: QueryDividePage, { rejectWithValue }) => {
+    try {
+      const { pageIndex,pageSize, keyword } = payload
+      let query = `pageIndex=${pageIndex}&pageSize=${pageSize}`;
+      if(keyword){
+        query = `pageIndex=${pageIndex}&pageSize=${pageSize}&keyword=${keyword}`
+      }
+      const res = await quanLyCongViecService.getTypeWorkWithPage(query)
       return res.data.content
     } catch (error) {
       rejectWithValue(error)
