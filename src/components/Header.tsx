@@ -16,19 +16,19 @@ const Header = () => {
     dispatch(getMenuTypeWork());
   }, [dispatch]);
 
-  const renderNavWork = () => {
-    return menuLoaiCongViec?.map((item: MenuTypeWork, index: number) => {
-      return (
-        <NavLink to={`category/${item.id}`} key={index}>
-          <WorkNav
-            id={item.id}
-            title={item.tenLoaiCongViec}
-            listGroupType={item.dsNhomChiTietLoai}
-          />
-        </NavLink>
-      );
-    });
-  };
+  // const renderNavWork = () => {
+  //   return menuLoaiCongViec?.map((item: MenuTypeWork, index: number) => {
+  //     return (
+  //       <NavLink to={`category/${item.id}`} key={index}>
+  //         <WorkNav
+  //           id={item.id}
+  //           title={item.tenLoaiCongViec}
+  //           listGroupType={item.dsNhomChiTietLoai}
+  //         />
+  //       </NavLink>
+  //     );
+  //   });
+  // };
 
   if (auth?.user.role === "ADMIN") {
     return <Navigate to="/admin" />;
