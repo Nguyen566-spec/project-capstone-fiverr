@@ -124,10 +124,10 @@ const ManageUser = (props: Props) => {
           </td>
           <td className="whitespace-nowrap px-6 py-4">{item.role}</td>
           <td className="whitespace-nowrap px-6 py-4 flex gap-2">
-            
-            <button className={clsx({
-              hidden : item.role.toLocaleLowerCase() === "admin"
-            })}
+            <button
+              className={clsx({
+                hidden: item.role.toLocaleLowerCase() === "admin",
+              })}
               onClick={async () => {
                 if (item.id && item.role.toLowerCase() !== "admin") {
                   await quanLyAuthService.deleteUser(item.id);
