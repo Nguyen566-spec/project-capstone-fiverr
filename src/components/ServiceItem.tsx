@@ -4,7 +4,7 @@ import React from "react";
 
 type Props = {
   classSlide: string;
-  activeSlide: string;
+  activeSlide?: string;
   index :number;
   img : string;
   title : string;
@@ -13,7 +13,7 @@ type Props = {
 
 const ServiceItem = (props: Props) => {
   return (
-    <div className={props.classSlide} data-carousel-item={props.activeSlide}>
+    <div className={props.classSlide} data-carousel-item>
       <div className="card">
         <div className="card-img">
           <img src={props.img} alt="" />

@@ -1,6 +1,6 @@
 .slide-service {
   @apply px-[--pd-32] py-[--pd-48];
   .wapper {
-    @apply relative h-56 overflow-hidden rounded-lg md:h-96 grid grid-cols-5 gap-6 items-center;
+    @apply relative overflow-hidden rounded-lg items-center;
   }
 }

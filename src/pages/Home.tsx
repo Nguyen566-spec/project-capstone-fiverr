@@ -5,7 +5,7 @@ import Wegot from "../components/Wegot";
 import FiverrBusiness from "../components/FiverrBusiness";
 import SliderMember from "../components/SliderMember";
 import SliderService from "../components/SliderService";
-// import CongViecList from "../module/CongViecList";
+
 
 const Home = () => {
   useEffect(() => {
