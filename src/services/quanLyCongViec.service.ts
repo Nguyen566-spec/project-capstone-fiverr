@@ -23,5 +23,8 @@ export const quanLyCongViecService = {
   getTypeWorkWithPage : (query:string) => http.get<GetHttpResponse<ResponseByPage<GetTypeWorkResponse>>>(`loai-cong-viec/phan-trang-tim-kiem?${query}`),
   deleteWork : (id:number)=> http.delete(`cong-viec/${id}`),
   updateWork : (id:number,work:FieldValues) => http.put<GetHttpResponse<GetCongViecResponse>>(`cong-viec/${id}`,work),
-  addWork : (work:FieldValues) => http.post<GetHttpResponse<GetCongViecResponse>>(`cong-viec`,work)
+  addWork : (work:FieldValues) => http.post<GetHttpResponse<GetCongViecResponse>>(`cong-viec`,work),
+  postLoaiCongViec : (type:FieldValues) => http.post<GetHttpResponse<GetTypeWorkResponse[]>>("loai-cong-viec",type),
+  updateLoaiCongViec : (id: number,type:FieldValues) => http.put<GetHttpResponse<GetTypeWorkResponse>>(`loai-cong-viec/${id}`,type),
+  deleteLoaiCongViec : (id: number) => http.delete<GetHttpResponse<GetTypeWorkResponse>>(`loai-cong-viec/${id}`),
 };

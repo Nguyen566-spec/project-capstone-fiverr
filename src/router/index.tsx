@@ -88,7 +88,7 @@ const Router = () => {
         },
         {
           path: "manage-type-work",
-          element : <ManageTypeWork />
+          element :<ManageTypeWork />
         }
       ],
     }
