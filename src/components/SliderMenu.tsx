@@ -5,6 +5,7 @@ import { getMenuTypeWork } from "../store/quanLyCongViec/thunkAction";
 import { MenuTypeWork } from "../react-app-env";
 import { NavLink } from "react-router-dom";
 import WorkNav from "./WorkNav";
+import { setItem } from "./SliderService";
 
 type Props = {};
 
@@ -13,27 +14,31 @@ const SliderMenu = (props: Props) => {
   useEffect(() => {
     dispatch(getMenuTypeWork());
   }, [dispatch]);
+  const screen = window.screen.width;
 
   const { menuLoaiCongViec } = useSelector(
     (state: RootState) => state.quanLyCongViec
   );
+  const itemShow = setItem(screen) * 2 - 2;
+  const itemIndex = itemShow - 1;
+  console.log(itemShow);
 
   const [currentSlide, setCurrentSlide] = useState({
     startSlide: 0,
-    endSlide: 7,
+    endSlide: itemIndex,
   });
 
   const nextSlide = () => {
     if (menuLoaiCongViec !== undefined) {
       let newStart =
-        currentSlide.startSlide < menuLoaiCongViec?.length - 7
+        currentSlide.startSlide < menuLoaiCongViec?.length - itemIndex
           ? currentSlide.endSlide + 1
           : 0;
 
       let newEnd =
         currentSlide.endSlide < menuLoaiCongViec?.length - 1
-          ? currentSlide.endSlide + 5
-          : 7;
+          ? currentSlide.endSlide + itemShow
+          : itemIndex;
 
       setCurrentSlide({
         startSlide: newStart,
@@ -44,18 +49,17 @@ const SliderMenu = (props: Props) => {
 
   const prevSlide = () => {
     if (menuLoaiCongViec !== undefined) {
-      const modSlide = menuLoaiCongViec?.length % 7;
+      const modSlide = itemShow - (menuLoaiCongViec?.length % itemShow);
 
       let newStart =
-        currentSlide.startSlide > 7
-          ? currentSlide.startSlide - 5
-          : menuLoaiCongViec.length + modSlide - 7;
+        currentSlide.startSlide > itemIndex
+          ? currentSlide.startSlide - itemShow
+          : menuLoaiCongViec.length + modSlide - itemShow;
 
       let newEnd =
-        currentSlide.endSlide > 7
-          ? currentSlide.endSlide - 5
-          : menuLoaiCongViec.length + modSlide;
-
+        currentSlide.endSlide > itemIndex
+          ? currentSlide.endSlide - itemShow
+          : menuLoaiCongViec.length + modSlide - 1;
 
       setCurrentSlide({
         startSlide: newStart,
@@ -63,14 +67,14 @@ const SliderMenu = (props: Props) => {
       });
     }
   };
+
   const renderCardList = () => {
     return menuLoaiCongViec?.map((item: MenuTypeWork, index: number) => {
       const codition =
         index <= currentSlide.endSlide && index >= currentSlide.startSlide;
       const classSide = codition ? "duration-700 ease-in-out active" : "hidden";
       return (
-        <NavLink to={`category/${item.id}`} key={index} className={classSide}
-        >
+        <NavLink to={`category/${item.id}`} key={index} className={classSide}>
           <WorkNav
             id={item.id}
             title={item.tenLoaiCongViec}
@@ -84,7 +88,9 @@ const SliderMenu = (props: Props) => {
     <div className="bottom relative">
       <div className="absolute w-full top-0 left-0" data-carousel="slide">
         {/* Carousel wrapper */}
-        <div className="w-[95%] mx-auto wapper grid grid-cols-8">{renderCardList()}</div>
+        <div className="w-[95%] mx-auto wapper grid sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-8 xl:grid-cols-8">
+          {renderCardList()}
+        </div>
         {/* Slider controls */}
         <button
           type="button"

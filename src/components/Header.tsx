@@ -107,7 +107,9 @@ const Header = () => {
           </ul>
         </div>
       </div>
-      <SliderMenu />
+      <div className="">
+        <SliderMenu />
+      </div>
     </header>
   );
 };

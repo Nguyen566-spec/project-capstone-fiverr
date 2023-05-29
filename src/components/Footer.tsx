@@ -14,15 +14,15 @@ const Footer = () => {
       }
       const newValue = value.map((item:string,index:number) => {
         return (
-          <p className="mb-4" key={index}>
-            <NavLink to="#!" className="text-main">
+          <p className="mb-4" key={index+item}>
+            <NavLink to="#" className="text-main">
               {item}
             </NavLink>
           </p>
         );
       });
       result.push(
-        <div className="item-footer">
+        <div className="item-footer" key={title}>
           <h6 className="title-item">{title}</h6>
           {newValue}
         </div>
@@ -34,8 +34,8 @@ const Footer = () => {
     const result = [];
     for (let [key,value] of Object.entries(pathIconSocial)) {
       result.push(
-        <li>
-          <NavLink to={value.to}>
+        <li key={key}>
+          <NavLink to="#">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-4 w-4"

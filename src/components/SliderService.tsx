@@ -7,9 +7,26 @@ import ServiceItem from "./ServiceItem";
 import { NavLink } from "react-router-dom";
 
 type Props = {};
+export const setItem = (screen: number) => {
+  let item = 0;
+
+  if (screen < 500) {
+    item = 2;
+  } else if (screen >= 500 && screen < 900) {
+    item = 3;
+  } else if (screen >= 900 && screen < 1200) {
+    item = 4;
+  } else if (screen >= 1200 && screen < 1500) {
+    item = 5;
+  }
+  return item;
+};
+
 
 const SliderService = (props: Props) => {
   const dispatch = useAppDispatch();
+  const screen = window.screen.width
+  
   useEffect(() => {
     dispatch(getDetailTypeWork());
   }, [dispatch]);
@@ -17,21 +34,26 @@ const SliderService = (props: Props) => {
   const { chiTietLoaiCongViec } = useSelector(
     (state: RootState) => state.quanLyCongViec
   );
+  const itemShow = setItem(screen);
+  const itemIndex = itemShow - 1;
+
   const [currentSlide, setCurrentSlide] = useState({
     startSlide: 0,
-    endSlide: 4,
+    endSlide: itemIndex,
   });
 
   const nextSlide = () => {
     if (chiTietLoaiCongViec !== undefined) {
       let newStart =
-        currentSlide.startSlide < chiTietLoaiCongViec?.length - 4
+        currentSlide.startSlide < chiTietLoaiCongViec?.length - itemIndex
           ? currentSlide.endSlide + 1
           : 0;
+
       let newEnd =
         currentSlide.endSlide < chiTietLoaiCongViec?.length - 1
-          ? currentSlide.endSlide + 5
-          : 4;
+          ? currentSlide.endSlide + itemShow
+          : itemIndex;
+
       setCurrentSlide({
         startSlide: newStart,
         endSlide: newEnd,
@@ -41,17 +63,17 @@ const SliderService = (props: Props) => {
 
   const prevSlide = () => {
     if (chiTietLoaiCongViec !== undefined) {
-      const modSlide = chiTietLoaiCongViec?.length % 5;
+      const modSlide = itemShow - (chiTietLoaiCongViec?.length % itemShow);
 
       let newStart =
-        currentSlide.startSlide > 4
-          ? currentSlide.startSlide - 5
-          : chiTietLoaiCongViec.length + modSlide - 4;
+        currentSlide.startSlide > itemIndex
+          ? currentSlide.startSlide - itemShow
+          : chiTietLoaiCongViec.length + modSlide - itemShow;
 
       let newEnd =
-        currentSlide.endSlide > 4
-          ? currentSlide.endSlide - 5
-          : chiTietLoaiCongViec.length + modSlide;
+        currentSlide.endSlide > itemIndex
+          ? currentSlide.endSlide - itemShow
+          : chiTietLoaiCongViec.length + modSlide - 1;
 
       setCurrentSlide({
         startSlide: newStart,
@@ -64,18 +86,18 @@ const SliderService = (props: Props) => {
       (item: GroupDetailTypeWork, index: number) => {
         const codition =
           index <= currentSlide.endSlide && index >= currentSlide.startSlide;
-        const classSide = codition ? "duration-700 ease-in-out" : "hidden";
-        const activeSlide = codition ? "active" : "";
+        const classSide = codition
+          ? "duration-700 ease-in-out active mx-3"
+          : "hidden";
+
         return (
-          <NavLink to={`category/${item.maLoaiCongviec}`}>
+          <NavLink to={`category/${item.maLoaiCongviec}`} key={index}>
             <ServiceItem
               classSlide={classSide}
-              activeSlide={activeSlide}
               index={index}
               img={item.hinhAnh}
               title={item.tenNhom}
               codeType={item.maLoaiCongviec}
-              key={index}
             />
           </NavLink>
         );
@@ -87,7 +109,7 @@ const SliderService = (props: Props) => {
     <div>
       <div className="relative w-full slide-service" data-carousel="slide">
         {/* Carousel wrapper */}
-        <div className="wapper">{renderCardList()}</div>
+        <div className="wapper grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">{renderCardList()}</div>
         {/* Slider controls */}
         <button
           type="button"
