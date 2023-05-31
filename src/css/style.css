@@ -142,6 +142,26 @@ header .bottom {
   @apply h-[30px] border-t-[1px] border-t-color-white-light container mx-auto;
 }
 
+/* Header.css */
+/* Default styles for desktop */
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+  header .top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  header .search {
+    margin-top: 10px;
+  }
+  header .nav-link {
+    flex-direction: row;
+    align-items: center;
+    margin-top: 20px;
+  }
+  header .btn-join {
+    margin-top: 10px;
+  }
+}
 footer {
   @apply text-center lg:text-left mx-[--mg-20] px-[--pd-32] pb-[--pd-24] pt-[--pd-64] mb-[--mg-8];
 }
@@ -305,6 +325,20 @@ footer .line-top {
   z-index: 0;
 }
 
+@media screen and (max-width: 992px) {
+  .introduction .intro-content {
+    @apply grid grid-cols-1;
+  }
+  .introduction .intro-content .intro-left, .introduction .intro-content .intro-right {
+    @apply w-[100%] mt-5;
+  }
+}
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 600px) {
+  .introduction .intro-content {
+    @apply grid grid-cols-1 mt-5;
+  }
+}
 .weGot {
   @apply px-[--pd-32] py-[--pd-48];
 }
@@ -333,6 +367,17 @@ footer .line-top {
   z-index: 1;
 }
 
+@media screen and (max-width: 992px) {
+  .weGot .wegot-content .list-got {
+    @apply grid grid-cols-3;
+  }
+}
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 600px) {
+  .weGot .wegot-content .list-got {
+    @apply grid grid-cols-2;
+  }
+}
 .business {
   @apply bg-color-puple-dark text-color-white;
 }
@@ -362,6 +407,23 @@ footer .line-top {
   @apply w-[50%];
 }
 
+@media screen and (max-width: 992px) {
+  .business .business-content {
+    @apply grid grid-cols-1;
+  }
+  .business .business-content .business-left, .business .business-content .business-right {
+    @apply w-[100%] mt-5;
+  }
+}
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 600px) {
+  .business .business-content {
+    @apply grid grid-cols-1;
+  }
+  .business .business-content .business-left, .business .business-content .business-right {
+    @apply w-[100%] mt-5;
+  }
+}
 .member-item {
   @apply flex items-center;
 }
@@ -406,6 +468,59 @@ footer .line-top {
   @apply text-font-32 text-color-green-dark font-ara;
 }
 
+@media screen and (max-width: 992px) {
+  .member-item .member-left {
+    @apply w-[50%] relative p-[--pd-10];
+  }
+  .member-item .member-left img {
+    @apply rounded-lg;
+  }
+  .member-item .member-left:after {
+    @apply bg-btn_play;
+    background-size: 40px;
+    height: 40px;
+    width: 40px;
+  }
+  .member-item .member-right {
+    @apply w-[50%];
+  }
+  .member-item .member-right .author h5 {
+    @apply text-font-14;
+  }
+  .member-item .member-right .qoute {
+    @apply pr-[2%];
+  }
+  .member-item .member-right .qoute i {
+    @apply text-font-20 text-color-green-dark font-ara;
+  }
+}
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 600px) {
+  .member-item .member-left {
+    @apply w-[50%] relative p-[--pd-10];
+  }
+  .member-item .member-left img {
+    @apply rounded-lg;
+  }
+  .member-item .member-left:after {
+    @apply bg-btn_play;
+    background-size: 20px;
+    height: 20px;
+    width: 20px;
+  }
+  .member-item .member-right {
+    @apply w-[50%];
+  }
+  .member-item .member-right .author h5 {
+    @apply text-font-14;
+  }
+  .member-item .member-right .qoute {
+    @apply pr-[2%];
+  }
+  .member-item .member-right .qoute i {
+    @apply text-font-14 text-color-green-dark font-ara;
+  }
+}
 .slideMember {
   @apply px-[--pd-32] py-[--pd-48];
 }
@@ -476,13 +591,13 @@ footer .line-top {
   @apply pt-[--pd-180] bg-color-gray-1;
 }
 .user-tab .tab-content {
-  @apply w-[90%] mx-auto flex gap-6 flex-row h-[150vh] py-[--pd-32];
+  @apply w-[90%] mx-auto flex gap-6 flex-row py-[--pd-32];
 }
 .user-tab .tab-content .user-profile {
   @apply w-[35%];
 }
 .user-tab .tab-content .user-order {
-  @apply w-[65%] bg-color-white p-[--pd-32];
+  @apply w-[65%] bg-color-white;
 }
 .user-tab .tab-content .user-order .no-item {
   @apply flex flex-col items-center gap-6 py-[--pd-32];

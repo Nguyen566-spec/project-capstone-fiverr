@@ -38,3 +38,24 @@
     }
   }
 }
+
+@media screen and (max-width: 992px) {
+  .introduction {
+    .intro-content { 
+      @apply grid grid-cols-1;
+      .intro-left, .intro-right {
+        @apply w-[100%] mt-5;
+      }
+    }
+  }
+}
+
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 600px) {
+  .introduction {
+    .intro-content { 
+      @apply grid grid-cols-1 mt-5;
+
+    }
+  }
+}

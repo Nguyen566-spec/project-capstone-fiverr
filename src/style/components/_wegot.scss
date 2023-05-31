@@ -27,3 +27,24 @@
     }
   }
 }
+
+@media screen and (max-width: 992px) {
+  .weGot {
+    .wegot-content { 
+      .list-got {
+        @apply grid grid-cols-3
+      }
+    }
+  }
+}
+
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 600px) {
+  .weGot {
+    .wegot-content { 
+      .list-got {
+        @apply grid grid-cols-2;
+      }
+    }
+  }
+}

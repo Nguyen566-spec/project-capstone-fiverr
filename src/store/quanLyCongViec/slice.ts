@@ -10,6 +10,7 @@ import {
   getHireWork,
   getWork,
   getTypeWorkWithPage,
+  getHireWorkOfUser,
 } from "./thunkAction";
 import {
   GetCongViecResponse,
@@ -17,6 +18,7 @@ import {
   MenuTypeWork,
   GroupDetailTypeWork,
   ThueCongViecResponse,
+  HireWorkOfUserResponse,
 } from "../../react-app-env";
 
 type InitialState = {
@@ -32,6 +34,7 @@ type InitialState = {
   totalRow?: number;
   listWorkWithPage?: GetCongViecResponse[];
   listTypeWorkWithPage?: GetTypeWorkResponse[];
+  listHireWorkOfUser ?: HireWorkOfUserResponse[]
 };
 
 const initialState: InitialState = {
@@ -46,7 +49,8 @@ const initialState: InitialState = {
   keywords: null,
   listWorkWithPage: [],
   totalRow: 0,
-  listTypeWorkWithPage : []
+  listTypeWorkWithPage : [],
+  listHireWorkOfUser : []
 };
 
 export const {
@@ -96,6 +100,9 @@ export const {
           state.listTypeWorkWithPage = action.payload.data;
           state.totalRow = action.payload.totalRow
         }
+      })
+      .addCase(getHireWorkOfUser.fulfilled , (state,action)=>{
+        state.listHireWorkOfUser = action.payload
       })
   },
 });

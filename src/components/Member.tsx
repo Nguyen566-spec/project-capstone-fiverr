@@ -26,7 +26,7 @@ const Member = (props: Props) => {
             <img src={props.logo} alt="" />
           </div>
           <div className="qoute">
-          <i>{props.content}</i>
+          <i className="md:text-font-20">{props.content}</i>
           </div>
         </div>
       </div>

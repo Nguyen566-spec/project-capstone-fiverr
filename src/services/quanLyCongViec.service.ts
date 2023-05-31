@@ -1,6 +1,6 @@
 import { FieldValues } from "react-hook-form";
 import http from "../constant/api";
-import { GetCongViecResponse, GetHttpResponse ,GetTypeWorkResponse ,MenuTypeWork,GroupDetailTypeWork, ThueCongViecResponse, ResponseByPage} from "../react-app-env";
+import { GetCongViecResponse, GetHttpResponse ,GetTypeWorkResponse ,MenuTypeWork,GroupDetailTypeWork, ThueCongViecResponse, ResponseByPage, HireWorkOfUserResponse} from "../react-app-env";
 
 export const quanLyCongViecService = {
   layDanhSachCongViec: () =>
@@ -27,4 +27,5 @@ export const quanLyCongViecService = {
   postLoaiCongViec : (type:FieldValues) => http.post<GetHttpResponse<GetTypeWorkResponse[]>>("loai-cong-viec",type),
   updateLoaiCongViec : (id: number,type:FieldValues) => http.put<GetHttpResponse<GetTypeWorkResponse>>(`loai-cong-viec/${id}`,type),
   deleteLoaiCongViec : (id: number) => http.delete<GetHttpResponse<GetTypeWorkResponse>>(`loai-cong-viec/${id}`),
+  getThueCongViecUser : () => http.get<GetHttpResponse<HireWorkOfUserResponse[]>>(`thue-cong-viec/lay-danh-sach-da-thue`),
 };
