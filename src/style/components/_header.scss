@@ -19,3 +19,36 @@ header {
     @apply h-[30px] border-t-[1px] border-t-color-white-light container mx-auto;
   }
 } 
+
+/* Header.css */
+
+/* Default styles for desktop */
+// .top {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+// }
+
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+  header {
+    .top {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .search {
+      margin-top: 10px;
+    }
+    
+    .nav-link {
+      flex-direction: row;
+      align-items: center;
+      margin-top: 20px;
+    }
+    
+    .btn-join {
+      margin-top: 10px;
+    }
+  }
+}

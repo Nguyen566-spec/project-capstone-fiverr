@@ -3,6 +3,7 @@ import React from "react";
 type Props = {
   check?: boolean;
   onChange?: (event: any) => void;
+  disable ?: boolean
 };
 
 const Toggle = (props: Props) => {

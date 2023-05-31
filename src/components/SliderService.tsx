@@ -10,23 +10,24 @@ type Props = {};
 export const setItem = (screen: number) => {
   let item = 0;
 
-  if (screen < 500) {
+  if (screen < 480) {
+    item = 1;
+  } else if (screen >= 480 && screen < 760) {
     item = 2;
-  } else if (screen >= 500 && screen < 900) {
+  } else if (screen >= 760 && screen < 1000) {
     item = 3;
-  } else if (screen >= 900 && screen < 1200) {
+  } else if (screen >= 1000 && screen < 1250) {
     item = 4;
-  } else if (screen >= 1200 && screen < 1500) {
+  } else if (screen >= 1250 && screen < 1600) {
     item = 5;
   }
   return item;
 };
 
-
 const SliderService = (props: Props) => {
   const dispatch = useAppDispatch();
-  const screen = window.screen.width
-  
+  const screen = window.screen.width;
+
   useEffect(() => {
     dispatch(getDetailTypeWork());
   }, [dispatch]);
@@ -109,7 +110,9 @@ const SliderService = (props: Props) => {
     <div>
       <div className="relative w-full slide-service" data-carousel="slide">
         {/* Carousel wrapper */}
-        <div className="wapper grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">{renderCardList()}</div>
+        <div className="wapper grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+          {renderCardList()}
+        </div>
         {/* Slider controls */}
         <button
           type="button"

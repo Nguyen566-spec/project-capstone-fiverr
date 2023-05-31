@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { quanLyCongViecService } from "../../services/quanLyCongViec.service";
 import { QueryDividePage } from "../../react-app-env";
+import { wait } from "@testing-library/user-event/dist/utils";
 
 export const layDanhSachCongViec = createAsyncThunk(
   "quanLyCongViec/layDanhSachCongViec",
@@ -134,3 +135,14 @@ export const getTypeWorkWithPage = createAsyncThunk(
     }
   }
 );
+
+export const getHireWorkOfUser = createAsyncThunk("quanLyCongViec/getHireWorkOfUser",
+  async (_,{rejectWithValue}) =>{
+    try {
+      const res = await quanLyCongViecService.getThueCongViecUser()
+      return res.data.content
+    } catch (error) {
+      rejectWithValue(error)
+    }
+  }
+)

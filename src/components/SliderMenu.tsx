@@ -5,9 +5,24 @@ import { getMenuTypeWork } from "../store/quanLyCongViec/thunkAction";
 import { MenuTypeWork } from "../react-app-env";
 import { NavLink } from "react-router-dom";
 import WorkNav from "./WorkNav";
-import { setItem } from "./SliderService";
 
 type Props = {};
+
+export const setItemMenu = (screen: number) => {
+  let item = 0;
+
+  if (screen < 500) {
+    item = 2;
+  } else if (screen >= 500 && screen < 900) {
+    item = 3;
+  } else if (screen >= 900 && screen < 1200) {
+    item = 5;
+  } else if (screen >= 1200 && screen < 1500) {
+    item = 5;
+  }
+  return item;
+};
+
 
 const SliderMenu = (props: Props) => {
   const dispatch = useAppDispatch();
@@ -19,9 +34,8 @@ const SliderMenu = (props: Props) => {
   const { menuLoaiCongViec } = useSelector(
     (state: RootState) => state.quanLyCongViec
   );
-  const itemShow = setItem(screen) * 2 - 2;
+  const itemShow = setItemMenu(screen);
   const itemIndex = itemShow - 1;
-  console.log(itemShow);
 
   const [currentSlide, setCurrentSlide] = useState({
     startSlide: 0,
@@ -88,7 +102,7 @@ const SliderMenu = (props: Props) => {
     <div className="bottom relative">
       <div className="absolute w-full top-0 left-0" data-carousel="slide">
         {/* Carousel wrapper */}
-        <div className="w-[95%] mx-auto wapper grid sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-8 xl:grid-cols-8">
+        <div className="w-[95%] mx-auto wapper grid sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 gap-3">
           {renderCardList()}
         </div>
         {/* Slider controls */}

@@ -118,3 +118,9 @@ export type AddBinhLuanResponse = {
   saoBinhLuan: number;
 };
 
+export type HireWorkOfUserResponse = {
+  id: number;
+  ngayThue : string;
+  hoanThanh : string;
+  congViec : GetCongViecResponse
+}
